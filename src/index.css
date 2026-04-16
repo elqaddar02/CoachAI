@@ -1,47 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════════════════
+   🎨 Premium Dark Blue & Gold Design System — LearnPulse AI
+   ═══════════════════════════════════════════════════════════════════ */
 :root {
-  --bg: #FAFAFA;
-  --bg-secondary: #F3F4F6;
-  --bg-card: rgba(255, 255, 255, 0.85);
-  --bg-glass: rgba(255, 255, 255, 0.7);
-  --text-primary: #111827;
-  --text-secondary: #6b7280;
-  --border: #e5e7eb;
-  --border-glass: rgba(229, 231, 235, 0.5);
-  --primary: #6366f1; /* Indigo */
-  --primary-hover: #4f46e5;
-  --secondary: #a855f7; /* Purple */
+  /* Background Hierarchy */
+  --bg: #070F1F;                           /* Very Dark Blue — page bg */
+  --bg-secondary: #0B1F3A;                 /* Deep Dark Blue — section bg */
+  --bg-card: rgba(15, 28, 46, 0.85);       /* Surface/Card */
+  --bg-glass: rgba(15, 28, 46, 0.6);       /* Glassmorphism panels */
+
+  /* Text */
+  --text-primary: #FFFFFF;
+  --text-secondary: #AAB4C5;
+
+  /* Borders */
+  --border: rgba(212, 175, 55, 0.12);       /* Subtle gold/blue mix */
+  --border-glass: rgba(212, 175, 55, 0.08);
+
+  /* Brand Colors */
+  --primary: #0B1F3A;                       /* Deep Dark Blue */
+  --primary-hover: #142C54;                 /* Navy Blue */
+  --secondary: #142C54;                     /* Navy Blue */
+  --accent: #D4AF37;                        /* Gold */
+  --accent-hover: #F1D37A;                  /* Light Gold */
+
+  /* Semantic Colors */
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-  --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
-  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
-  --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
-  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-  --radius: 1.5rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.15);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.25), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+  --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.35);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+
+  /* Layout */
+  --radius: 1.25rem;
 }
 
+/* Dark class uses same values (theme is natively dark) */
 .dark {
-  --bg: #0B0E14; /* Deep premium black/slate */
-  --bg-secondary: #141824;
-  --bg-card: rgba(20, 24, 36, 0.7);
-  --bg-glass: rgba(20, 24, 36, 0.4);
-  --text-primary: #F3F4F6;
-  --text-secondary: #9CA3AF;
-  --border: #1F2937;
-  --border-glass: rgba(255, 255, 255, 0.08);
-  --primary: #818cf8;
-  --primary-hover: #6366f1;
-  --secondary: #c084fc;
+  --bg: #070F1F;
+  --bg-secondary: #0B1F3A;
+  --bg-card: rgba(15, 28, 46, 0.85);
+  --bg-glass: rgba(15, 28, 46, 0.6);
+  --text-primary: #FFFFFF;
+  --text-secondary: #AAB4C5;
+  --border: rgba(212, 175, 55, 0.12);
+  --border-glass: rgba(212, 175, 55, 0.08);
+  --primary: #0B1F3A;
+  --primary-hover: #142C54;
+  --secondary: #142C54;
+  --accent: #D4AF37;
+  --accent-hover: #F1D37A;
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   Base Layer
+   ═══════════════════════════════════════════════════════════════════ */
 @layer base {
   * {
     border-color: var(--border);
@@ -64,40 +88,42 @@
   }
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   Component Layer — Premium Dark Glass UI
+   ═══════════════════════════════════════════════════════════════════ */
 @layer components {
-  /* Ultra-Premium Glassmorphism */
+
+  /* ── Glassmorphism ───────────────────────────────────────────── */
   .glass {
     background: var(--bg-glass);
     border: 1px solid var(--border-glass);
     @apply backdrop-blur-2xl rounded-3xl;
-    box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255,255,255,0.5);
+    box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255,255,255,0.03);
   }
-  .dark .glass {
-    box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255,255,255,0.05);
-  }
-  
+
   .glass-hover {
     @apply transition-all duration-500 ease-out;
   }
   .glass-hover:hover {
     transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
+    box-shadow: 0 20px 40px -10px rgba(212, 175, 55, 0.1);
     background: var(--bg-card);
-    border-color: var(--primary);
+    border-color: rgba(212, 175, 55, 0.25);
   }
 
-  /* Buttons */
+  /* ── Buttons ─────────────────────────────────────────────────── */
   .btn-primary {
     @apply relative inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl font-bold text-sm text-white overflow-hidden shadow-lg transition-all duration-300;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, #142C54, #D4AF37);
   }
   .btn-primary::before {
     content: '';
-    @apply absolute inset-0 bg-white/20 opacity-0 transition-opacity duration-300;
+    @apply absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-300;
   }
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.3);
+    background: linear-gradient(135deg, #142C54, #F1D37A);
   }
   .btn-primary:hover::before {
     @apply opacity-100;
@@ -107,41 +133,52 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl font-bold text-sm bg-white/60 dark:bg-slate-800/60 backdrop-blur-md shadow-sm border transition-all duration-300;
-    border-color: var(--border);
+    @apply inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl font-bold text-sm backdrop-blur-md shadow-sm transition-all duration-300;
+    background: rgba(11, 31, 58, 0.6);
+    border: 1px solid rgba(212, 175, 55, 0.15);
     color: var(--text-primary);
   }
   .btn-secondary:hover {
     transform: translateY(-2px);
-    border-color: var(--primary);
-    background: var(--bg-card);
+    border-color: rgba(212, 175, 55, 0.35);
+    background: rgba(15, 28, 46, 0.85);
   }
   .btn-secondary:active {
     transform: scale(0.97);
   }
 
-  /* Inputs */
+  /* ── Inputs ──────────────────────────────────────────────────── */
   .input-focus {
-    @apply transition-all duration-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl px-5 py-3.5 outline-none;
+    @apply transition-all duration-300 rounded-2xl px-5 py-3.5 outline-none;
+    background: rgba(11, 31, 58, 0.6);
+    border: 1px solid rgba(212, 175, 55, 0.12);
     color: var(--text-primary);
   }
   .input-focus:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-    background: var(--bg);
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+    background: rgba(11, 31, 58, 0.9);
   }
   .input-focus::placeholder {
     color: var(--text-secondary);
   }
 }
 
-/* Base Utility Animations */
+/* ═══════════════════════════════════════════════════════════════════
+   Utility Layer
+   ═══════════════════════════════════════════════════════════════════ */
 @layer utilities {
   .text-gradient {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(to right, var(--primary), var(--secondary));
+    background-image: linear-gradient(to right, #142C54, #D4AF37);
+  }
+  .text-gradient-gold {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(135deg, #D4AF37, #F1D37A);
   }
   .animate-blob {
     animation: blob 7s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
@@ -150,9 +187,20 @@
     background-size: 200% 200%;
     animation: shimmer 3s infinite linear;
   }
+  .border-gold {
+    border-color: rgba(212, 175, 55, 0.2);
+  }
+  .border-gold-strong {
+    border-color: rgba(212, 175, 55, 0.4);
+  }
+  .glow-gold {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+  }
 }
 
-/* Keyframes */
+/* ═══════════════════════════════════════════════════════════════════
+   Keyframes
+   ═══════════════════════════════════════════════════════════════════ */
 @keyframes fadeInUp {
   0% { opacity: 0; transform: translateY(20px) scale(0.98); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
@@ -173,7 +221,9 @@
   100% { background-position: -200% 0; }
 }
 
-/* Beautiful Scrollbar */
+/* ═══════════════════════════════════════════════════════════════════
+   Scrollbar — Premium Gold Theme
+   ═══════════════════════════════════════════════════════════════════ */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -182,10 +232,10 @@
   background: var(--bg); 
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border); 
+  background: rgba(212, 175, 55, 0.2); 
   border-radius: 999px;
   transition: background 0.3s ease;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary); 
+  background: rgba(212, 175, 55, 0.4); 
 }

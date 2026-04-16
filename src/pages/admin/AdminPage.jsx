@@ -83,9 +83,9 @@ const AdminPage = () => {
       initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
       className="space-y-8 relative"
     >
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 glass p-8 rounded-[2rem] border-b-4 border-slate-700 dark:border-slate-300">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 glass p-8 rounded-[2rem] border-b-4 border-[#D4AF37]/30">
         <div>
-          <h1 className="text-3xl font-extrabold text-text-primary mb-2 font-outfit">The Control <span className="text-slate-500">Tower</span></h1>
+          <h1 className="text-3xl font-extrabold text-text-primary mb-2 font-outfit">The Control <span className="text-[#D4AF37]">Tower</span></h1>
           <p className="text-text-secondary text-lg">Platform Orchestration & User Management</p>
         </div>
         <div className="flex gap-4">
@@ -104,7 +104,7 @@ const AdminPage = () => {
                placeholder="Rechercher nom, email, rôle..." 
                value={searchQuery}
                onChange={(e) => setSearchQuery(e.target.value)}
-               className="input-focus w-full sm:w-80 pl-4 py-2 bg-white/50 dark:bg-slate-900/50 rounded-xl outline-none focus:ring-2 focus:ring-primary/50 text-sm" 
+               className="input-focus w-full sm:w-80 pl-4 py-2 bg-[#0B1F3A]/50 rounded-xl outline-none focus:ring-2 focus:ring-[#D4AF37]/30 text-sm" 
              />
           </div>
         </div>
@@ -128,7 +128,7 @@ const AdminPage = () => {
                     key={user.id}
                     layout
                     initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ delay: i * 0.05 }}
-                    className="border-b border-border-glass/50 hover:bg-white/40 dark:hover:bg-slate-800/40 transition-colors group"
+                    className="border-b border-[rgba(212,175,55,0.1)] hover:bg-[#0B1F3A]/40 transition-colors group"
                   >
                     <td className="py-4 px-4">
                       <div className="flex flex-col">
@@ -138,9 +138,9 @@ const AdminPage = () => {
                     </td>
                     <td className="py-4 px-4">
                        <span className={`px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase border ${
-                         user.role === 'admin' ? 'bg-purple-500/10 text-purple-600 border-purple-500/20' :
-                         user.role === 'teacher' ? 'bg-blue-500/10 text-blue-600 border-blue-500/20' :
-                         'bg-emerald-500/10 text-emerald-600 border-emerald-500/20'
+                         user.role === 'admin' ? 'bg-[#D4AF37]/10 text-[#D4AF37] border-[#D4AF37]/20' :
+                         user.role === 'teacher' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' :
+                         'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
                        }`}>
                          {user.role}
                        </span>
@@ -183,14 +183,14 @@ const AdminPage = () => {
         {isModalOpen && (
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-[#070F1F]/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           >
              <motion.div 
                initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }}
-               className="bg-white dark:bg-slate-900 border border-border-glass rounded-[2rem] p-8 w-full max-w-md shadow-2xl relative"
+               className="bg-[#0F1C2E] border border-[rgba(212,175,55,0.2)] rounded-[2rem] p-8 w-full max-w-md shadow-2xl relative"
              >
                 <div className="absolute top-0 right-0 p-4">
-                   <button onClick={closeModal} className="p-2 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                   <button onClick={closeModal} className="p-2 bg-[#0B1F3A] rounded-full hover:bg-[#142C54] transition-colors">
                       <X className="w-4 h-4 text-text-primary" />
                    </button>
                 </div>
@@ -202,22 +202,22 @@ const AdminPage = () => {
                 <form onSubmit={handleSave} className="space-y-4">
                    <div>
                      <label className="block text-xs font-bold text-text-secondary uppercase mb-1">Nom Complet</label>
-                     <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:border-primary focus:ring-1 focus:ring-primary rounded-xl text-sm" placeholder="Alex Developer" />
+                     <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full px-4 py-3 bg-[#0B1F3A]/60 border border-[rgba(212,175,55,0.15)] outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 rounded-xl text-sm text-white" placeholder="Alex Developer" />
                    </div>
                    
                    <div>
                      <label className="block text-xs font-bold text-text-secondary uppercase mb-1">Adresse Email</label>
-                     <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:border-primary focus:ring-1 focus:ring-primary rounded-xl text-sm" placeholder="alex@learnpulse.com" />
+                     <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full px-4 py-3 bg-[#0B1F3A]/60 border border-[rgba(212,175,55,0.15)] outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 rounded-xl text-sm text-white" placeholder="alex@learnpulse.com" />
                    </div>
 
                    <div>
                      <label className="block text-xs font-bold text-text-secondary uppercase mb-1">Nouveau Mot de Passe</label>
-                     <input type="password" value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:border-primary focus:ring-1 focus:ring-primary rounded-xl text-sm" placeholder={editingUser ? "Laissez vide pour conserver l'actuel" : "Nouveau mot de passe"} />
+                     <input type="password" value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} className="w-full px-4 py-3 bg-[#0B1F3A]/60 border border-[rgba(212,175,55,0.15)] outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 rounded-xl text-sm text-white" placeholder={editingUser ? "Laissez vide pour conserver l'actuel" : "Nouveau mot de passe"} />
                    </div>
 
                    <div>
                      <label className="block text-xs font-bold text-text-secondary uppercase mb-1">Rôle Système</label>
-                     <select value={formData.role} onChange={e => setFormData({...formData, role: e.target.value})} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:border-primary focus:ring-1 focus:ring-primary rounded-xl text-sm">
+                     <select value={formData.role} onChange={e => setFormData({...formData, role: e.target.value})} className="w-full px-4 py-3 bg-[#0B1F3A]/60 border border-[rgba(212,175,55,0.15)] outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 rounded-xl text-sm text-white">
                         <option value="student">Étudiant (Student)</option>
                         <option value="teacher">Enseignant (Teacher)</option>
                         <option value="admin">Administrateur (Admin)</option>
@@ -225,10 +225,10 @@ const AdminPage = () => {
                    </div>
 
                    <div className="pt-4 flex gap-3">
-                     <button type="button" onClick={closeModal} className="flex-1 px-4 py-3 rounded-xl border border-border-glass text-text-primary font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                     <button type="button" onClick={closeModal} className="flex-1 px-4 py-3 rounded-xl border border-[rgba(212,175,55,0.15)] text-white font-bold hover:bg-[#0B1F3A] transition-colors">
                        Annuler
                      </button>
-                     <button type="submit" className="flex-1 px-4 py-3 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold transition-colors">
+                     <button type="submit" className="flex-1 px-4 py-3 rounded-xl bg-gradient-to-r from-[#142C54] to-[#D4AF37] hover:to-[#F1D37A] text-white font-bold transition-colors">
                        {editingUser ? 'Mettre à jour' : 'Créer'}
                      </button>
                    </div>

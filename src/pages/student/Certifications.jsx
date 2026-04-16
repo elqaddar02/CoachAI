@@ -30,13 +30,13 @@ const Certifications = () => {
               key={cert.id}
               whileHover={{ scale: 1.02 }}
               className={`p-1 rounded-[2rem] bg-gradient-to-br ${
-                cert.status === 'unlocked' ? 'from-emerald-500 via-primary to-secondary' : 'from-slate-200 to-slate-200 dark:from-slate-800 dark:to-slate-800 opacity-60 grayscale'
+                cert.status === 'unlocked' ? 'from-[#D4AF37] via-[#142C54] to-[#D4AF37]' : 'from-[#0B1F3A] to-[#0B1F3A] opacity-60 grayscale'
               }`}
             >
                <div className="bg-bg h-full p-8 rounded-[1.9rem] flex flex-col justify-between relative overflow-hidden group">
                   
                   {cert.status === 'locked' && (
-                    <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-white">
+                    <div className="absolute inset-0 bg-[#070F1F]/60 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-white">
                        <Lock className="w-10 h-10 mb-2" />
                        <span className="font-bold">Verrouillé</span>
                        <span className="text-xs">Objectif : 80% de Maîtrise</span>
@@ -75,7 +75,7 @@ const Certifications = () => {
                     
                     <button 
                       disabled={cert.status === 'locked'}
-                      className="p-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-text-primary transition-colors disabled:opacity-50"
+                      className="p-3 rounded-xl bg-[#0B1F3A] hover:bg-[#142C54] text-white transition-colors disabled:opacity-50"
                     >
                       {cert.status === 'unlocked' ? <Download className="w-5 h-5" /> : <ExternalLink className="w-5 h-5" />}
                     </button>

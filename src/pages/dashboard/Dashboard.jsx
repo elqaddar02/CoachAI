@@ -85,7 +85,7 @@ const Dashboard = () => {
               <h3 className="text-2xl font-bold text-text-primary font-outfit">Courbe d'Expérience (XP)</h3>
               <p className="text-sm text-text-secondary mt-1">Évolution globale des cohortes sur le trimestre.</p>
             </div>
-            <button className="p-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-xl transition-colors">
+            <button className="p-2 bg-[#0B1F3A] hover:bg-[#142C54] rounded-xl transition-colors">
               <TrendingUp className="w-5 h-5 text-text-secondary" />
             </button>
           </div>
@@ -94,36 +94,36 @@ const Dashboard = () => {
               <AreaChart data={data}>
                 <defs>
                   <linearGradient id="colorXp" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#6366f1" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#D4AF37" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#D4AF37" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(212,175,55,0.1)" />
                 <XAxis dataKey="name" stroke="currentColor" className="text-text-secondary text-xs font-bold" tickLine={false} />
                 <YAxis stroke="currentColor" className="text-text-secondary text-xs font-bold" tickLine={false} axisLine={false} />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}
+                  contentStyle={{ backgroundColor: 'rgba(11, 31, 58, 0.95)', border: '1px solid rgba(212,175,55,0.2)', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
                   itemStyle={{ color: '#fff', fontWeight: 'bold' }}
                 />
-                <Area type="monotone" dataKey="xp" stroke="#6366f1" strokeWidth={4} fillOpacity={1} fill="url(#colorXp)" />
+                <Area type="monotone" dataKey="xp" stroke="#D4AF37" strokeWidth={4} fillOpacity={1} fill="url(#colorXp)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
         </motion.div>
 
         <Tilt tiltMaxAngleX={2} tiltMaxAngleY={2} scale={1.02} transitionSpeed={2000} className="w-full h-full">
-           <motion.div variants={itemVariants} className="glass p-8 rounded-[2.5rem] border border-white/10 h-full flex flex-col justify-between bg-gradient-to-b from-slate-900 to-slate-800 text-white shadow-2xl relative overflow-hidden group">
-              <div className="absolute top-[-50px] right-[-50px] w-48 h-48 bg-primary/40 blur-[60px] rounded-full group-hover:bg-primary/60 transition-colors"></div>
+           <motion.div variants={itemVariants} className="glass p-8 rounded-[2.5rem] border border-[rgba(212,175,55,0.15)] h-full flex flex-col justify-between bg-gradient-to-b from-[#0B1F3A] to-[#0F1C2E] text-white shadow-2xl relative overflow-hidden group">
+              <div className="absolute top-[-50px] right-[-50px] w-48 h-48 bg-[#D4AF37]/20 blur-[60px] rounded-full group-hover:bg-[#D4AF37]/30 transition-colors"></div>
               <div className="relative z-10">
-                 <div className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center mb-6">
+                 <div className="w-14 h-14 bg-[rgba(212,175,55,0.1)] backdrop-blur-md border border-[rgba(212,175,55,0.2)] rounded-2xl flex items-center justify-center mb-6">
                     <Zap className="w-6 h-6 text-warning" />
                  </div>
                  <h3 className="text-2xl font-bold font-outfit mb-3">Insights I.A Temps Réel</h3>
-                 <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                 <p className="text-[#AAB4C5] text-sm leading-relaxed mb-6">
                    Le réseau neuronal détecte une forte propension des cohortes actuelles vers les profils "Cloud Architect" (Hausse de 40% de l'engagement AWS).
                  </p>
               </div>
-              <button className="relative z-10 w-full py-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl font-bold text-sm text-white transition-all backdrop-blur-lg">
+              <button className="relative z-10 w-full py-4 bg-[rgba(212,175,55,0.1)] hover:bg-[rgba(212,175,55,0.2)] border border-[rgba(212,175,55,0.2)] rounded-2xl font-bold text-sm text-white transition-all backdrop-blur-lg">
                  Consulter le rapport
               </button>
            </motion.div>

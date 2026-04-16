@@ -160,7 +160,7 @@ const PathSelector = () => {
               relative flex items-center justify-center gap-3 px-10 py-4 rounded-2xl font-bold text-lg transition-all duration-300 min-w-[260px]
               ${selected
                 ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-2xl shadow-primary/30 hover:shadow-primary/50'
-                : 'bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed'}
+                : 'bg-[#0B1F3A] text-[#AAB4C5]/50 cursor-not-allowed'}
             `}
           >
             {isNavigating ? (

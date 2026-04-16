@@ -75,15 +75,15 @@ const PlacementTest = () => {
   return (
     <div className="min-h-screen bg-bg flex flex-col items-center justify-start py-10 px-4 relative overflow-hidden font-outfit">
       {/* Bg glows */}
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/8 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/8 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#142C54]/30 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#D4AF37]/8 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="w-full max-w-3xl relative z-10">
 
         {/* Top Bar */}
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#142C54] to-[#D4AF37] flex items-center justify-center shadow-lg shadow-[#D4AF37]/20">
               <Brain className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -105,12 +105,12 @@ const PlacementTest = () => {
             <span className="text-sm font-bold text-text-secondary">
               Question <span className="text-text-primary">{currentIdx + 1}</span> of {totalQuestions}
             </span>
-            <span className="text-sm font-bold text-primary">{answeredCount}/{totalQuestions} answered</span>
+            <span className="text-sm font-bold text-[#D4AF37]">{answeredCount}/{totalQuestions} answered</span>
           </div>
           {/* Progress bar */}
-          <div className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+          <div className="w-full h-2 bg-[#0B1F3A] rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+              className="h-full bg-gradient-to-r from-[#142C54] to-[#D4AF37] rounded-full"
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
               transition={{ type: 'spring', stiffness: 100 }}
@@ -124,10 +124,10 @@ const PlacementTest = () => {
                 onClick={() => { setDirection(idx > currentIdx ? 1 : -1); setCurrentIdx(idx); }}
                 className={`w-6 h-6 rounded-full text-[10px] font-bold transition-all duration-200 ${
                   idx === currentIdx
-                    ? 'bg-primary text-white scale-110 shadow-md shadow-primary/30'
+                    ? 'bg-[#D4AF37] text-[#0B1F3A] scale-110 shadow-md shadow-[#D4AF37]/30'
                     : localAnswers[q.id] !== undefined
                     ? 'bg-emerald-500/20 text-emerald-500 border border-emerald-500/30'
-                    : 'bg-slate-200 dark:bg-slate-800 text-text-secondary hover:bg-slate-300 dark:hover:bg-slate-700'
+                    : 'bg-[#0B1F3A] text-[#AAB4C5] hover:bg-[#142C54]'
                 }`}
               >
                 {idx + 1}
@@ -149,7 +149,7 @@ const PlacementTest = () => {
               className="glass rounded-[2rem] p-8 border border-border-glass shadow-xl"
             >
               {/* Topic badge */}
-              <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-5">
+              <span className="inline-block px-3 py-1 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] text-xs font-bold uppercase tracking-wider mb-5">
                 {currentQuestion.topic}
               </span>
 
@@ -172,22 +172,22 @@ const PlacementTest = () => {
                       className={`
                         flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all duration-200 group
                         ${isChosen
-                          ? 'bg-primary/10 border-primary/60 shadow-lg shadow-primary/10'
-                          : 'bg-slate-50/50 dark:bg-slate-800/30 border-transparent hover:border-primary/30 hover:bg-primary/5'}
+                          ? 'bg-[#D4AF37]/10 border-[#D4AF37]/60 shadow-lg shadow-[#D4AF37]/10'
+                          : 'bg-[#0B1F3A]/30 border-transparent hover:border-[#D4AF37]/30 hover:bg-[#D4AF37]/5'}
                       `}
                     >
                       <span className={`
                         w-9 h-9 rounded-xl flex items-center justify-center text-sm font-black flex-shrink-0 transition-all duration-200
-                        ${isChosen ? 'bg-primary text-white' : 'bg-slate-200 dark:bg-slate-700 text-text-secondary group-hover:bg-primary/20 group-hover:text-primary'}
+                        ${isChosen ? 'bg-[#D4AF37] text-[#0B1F3A]' : 'bg-[#0B1F3A] text-[#AAB4C5] group-hover:bg-[#D4AF37]/20 group-hover:text-[#D4AF37]'}
                       `}>
                         {optionLetters[optIdx]}
                       </span>
-                      <span className={`font-semibold text-sm md:text-base ${isChosen ? 'text-primary' : 'text-text-primary'}`}>
+                      <span className={`font-semibold text-sm md:text-base ${isChosen ? 'text-[#D4AF37]' : 'text-white'}`}>
                         {option}
                       </span>
                       {isChosen && (
                         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="ml-auto">
-                          <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+                          <div className="w-5 h-5 rounded-full bg-[#D4AF37] flex items-center justify-center">
                             <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                             </svg>
@@ -207,7 +207,7 @@ const PlacementTest = () => {
           <button
             onClick={handlePrev}
             disabled={currentIdx === 0}
-            className="flex items-center gap-2 px-6 py-3 rounded-2xl border border-border-glass text-text-secondary hover:text-text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-all disabled:opacity-30 disabled:cursor-not-allowed font-bold"
+            className="flex items-center gap-2 px-6 py-3 rounded-2xl border border-[rgba(212,175,55,0.15)] text-[#AAB4C5] hover:text-white hover:bg-[#0B1F3A] transition-all disabled:opacity-30 disabled:cursor-not-allowed font-bold"
           >
             <ArrowLeft className="w-4 h-4" />
             Previous
@@ -224,7 +224,7 @@ const PlacementTest = () => {
                   flex items-center gap-3 px-8 py-3 rounded-2xl font-bold transition-all duration-300
                   ${canFinish
                     ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl shadow-emerald-500/30 hover:shadow-emerald-500/50'
-                    : 'bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed'}
+                    : 'bg-[#0B1F3A] text-[#AAB4C5]/50 cursor-not-allowed'}
                 `}
               >
                 {isSubmitting ? (
@@ -236,7 +236,7 @@ const PlacementTest = () => {
             ) : (
               <button
                 onClick={handleNext}
-                className="flex items-center gap-2 px-8 py-3 rounded-2xl bg-primary hover:bg-indigo-500 text-white font-bold transition-all shadow-lg shadow-primary/30 hover:shadow-primary/50"
+                className="flex items-center gap-2 px-8 py-3 rounded-2xl bg-gradient-to-r from-[#142C54] to-[#D4AF37] text-white font-bold transition-all shadow-lg shadow-[#D4AF37]/20 hover:shadow-[#D4AF37]/40"
               >
                 Next
                 <ChevronRight className="w-4 h-4" />
@@ -268,7 +268,7 @@ const PlacementTest = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-slate-900/70 backdrop-blur-md z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-[#070F1F]/80 backdrop-blur-md z-50 flex items-center justify-center p-4"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -284,7 +284,7 @@ const PlacementTest = () => {
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowExitModal(false)}
-                  className="flex-1 py-3 rounded-2xl border border-border-glass text-text-secondary hover:text-text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-all font-bold"
+                  className="flex-1 py-3 rounded-2xl border border-[rgba(212,175,55,0.15)] text-[#AAB4C5] hover:text-white hover:bg-[#0B1F3A] transition-all font-bold"
                 >
                   Continue Test
                 </button>

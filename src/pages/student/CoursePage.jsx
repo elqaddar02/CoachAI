@@ -103,7 +103,7 @@ const LessonQuiz = ({ quiz, lessonIndex, courseId, onComplete }) => {
       <div className="grid grid-cols-1 gap-3 mb-5">
         {quiz.options.map((opt, idx) => {
           const letters = ['A', 'B', 'C', 'D'];
-          let style = 'bg-slate-50 dark:bg-slate-800/50 border-transparent hover:border-primary/30 hover:bg-primary/5';
+          let style = 'bg-[#0B1F3A]/50 border-transparent hover:border-[#D4AF37]/30 hover:bg-[#D4AF37]/5';
 
           if (submitted) {
             if (idx === quiz.correctIndex) {
@@ -111,7 +111,7 @@ const LessonQuiz = ({ quiz, lessonIndex, courseId, onComplete }) => {
             } else if (idx === selected && selected !== quiz.correctIndex) {
               style = 'bg-red-500/10 border-red-500/40 text-red-500';
             } else {
-              style = 'bg-slate-50 dark:bg-slate-800/50 border-transparent opacity-50';
+              style = 'bg-[#0B1F3A]/50 border-transparent opacity-50';
             }
           } else if (selected === idx) {
             style = 'bg-primary/10 border-primary/60';
@@ -124,7 +124,7 @@ const LessonQuiz = ({ quiz, lessonIndex, courseId, onComplete }) => {
               onClick={() => !submitted && setSelected(idx)}
               className={`flex items-center gap-3 p-3.5 rounded-2xl border-2 text-left transition-all duration-200 ${style}`}
             >
-              <span className={`w-8 h-8 rounded-xl flex items-center justify-center text-xs font-black flex-shrink-0 ${selected === idx && !submitted ? 'bg-primary text-white' : 'bg-slate-200 dark:bg-slate-700 text-text-secondary'}`}>
+              <span className={`w-8 h-8 rounded-xl flex items-center justify-center text-xs font-black flex-shrink-0 ${selected === idx && !submitted ? 'bg-[#D4AF37] text-[#0B1F3A]' : 'bg-[#0B1F3A] text-[#AAB4C5]'}`}>
                 {letters[idx]}
               </span>
               <span className="text-sm font-medium text-text-primary">{opt}</span>
@@ -153,7 +153,7 @@ const LessonQuiz = ({ quiz, lessonIndex, courseId, onComplete }) => {
         <button
           onClick={handleSubmit}
           disabled={selected === null}
-          className={`w-full py-3.5 rounded-2xl font-bold text-sm transition-all ${selected !== null ? 'bg-primary text-white hover:bg-indigo-500 shadow-lg shadow-primary/30' : 'bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed'}`}
+          className={`w-full py-3.5 rounded-2xl font-bold text-sm transition-all ${selected !== null ? 'bg-gradient-to-r from-[#142C54] to-[#D4AF37] text-white shadow-lg shadow-[#D4AF37]/20' : 'bg-[#0B1F3A] text-[#AAB4C5]/50 cursor-not-allowed'}`}
         >
           Submit Answer
         </button>
@@ -247,9 +247,9 @@ const CoursePage = () => {
           <div className="flex items-center gap-3">
             <div className="hidden sm:flex items-center gap-2">
               <span className="text-xs font-bold text-text-secondary">{completedCount}/{totalLessons} complete</span>
-              <div className="w-32 h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+              <div className="w-32 h-2 bg-[#0B1F3A] rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                  className="h-full bg-gradient-to-r from-[#142C54] to-[#D4AF37] rounded-full"
                   initial={{ width: 0 }}
                   animate={{ width: `${progressPct}%` }}
                   transition={{ type: 'spring', stiffness: 80 }}
@@ -314,8 +314,8 @@ const CoursePage = () => {
                         : isActive
                         ? 'bg-primary text-white'
                         : unlocked
-                        ? 'bg-slate-200 dark:bg-slate-700 text-text-secondary'
-                        : 'bg-slate-200 dark:bg-slate-700 text-slate-400'
+                        ? 'bg-[#0B1F3A] text-[#AAB4C5]'
+                        : 'bg-[#0B1F3A] text-[#AAB4C5]/50'
                     }`}>
                       {isCompleted ? <CheckCircle className="w-4 h-4" /> : !unlocked ? <Lock className="w-3.5 h-3.5" /> : idx + 1}
                     </div>
@@ -387,7 +387,7 @@ const CoursePage = () => {
                   <button
                     onClick={() => handleLessonSelect(activeLessonIdx - 1)}
                     disabled={activeLessonIdx === 0}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-2xl border border-border-glass text-text-secondary hover:text-text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-all font-bold text-sm disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-2xl border border-[rgba(212,175,55,0.15)] text-[#AAB4C5] hover:text-white hover:bg-[#0B1F3A] transition-all font-bold text-sm disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     <ChevronLeft className="w-4 h-4" /> Previous
                   </button>
@@ -402,8 +402,8 @@ const CoursePage = () => {
                       disabled={!isLessonUnlocked(activeLessonIdx + 1)}
                       className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl font-bold text-sm transition-all ${
                         isLessonUnlocked(activeLessonIdx + 1)
-                          ? 'bg-primary text-white hover:bg-indigo-500 shadow-lg shadow-primary/30'
-                          : 'bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed'
+                          ? 'bg-gradient-to-r from-[#142C54] to-[#D4AF37] text-white shadow-lg shadow-[#D4AF37]/20'
+                          : 'bg-[#0B1F3A] text-[#AAB4C5]/50 cursor-not-allowed'
                       }`}
                     >
                       Next <ChevronRight className="w-4 h-4" />
@@ -434,8 +434,8 @@ const CoursePage = () => {
                               : completedLessons.includes(idx)
                               ? 'bg-emerald-500/20 text-emerald-500 border border-emerald-500/30'
                               : unlocked
-                              ? 'bg-slate-200 dark:bg-slate-700 text-text-secondary'
-                              : 'bg-slate-100 dark:bg-slate-800 text-slate-400 opacity-50'
+                              ? 'bg-[#0B1F3A] text-[#AAB4C5]'
+                              : 'bg-[#0B1F3A]/50 text-[#AAB4C5]/40 opacity-50'
                           }`}
                         >
                           {completedLessons.includes(idx) ? '✓' : idx + 1}

@@ -22,7 +22,7 @@ const CareerRoadmap = () => {
       initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
       className="space-y-8"
     >
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 glass p-8 rounded-[2rem] border-b-4 border-indigo-500 relative overflow-hidden">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 glass p-8 rounded-[2rem] border-b-4 border-[#D4AF37]/30 relative overflow-hidden">
         <div className="absolute top-[-20%] right-[-10%] opacity-10">
           <Compass className="w-64 h-64 text-primary animate-[spin_60s_linear_infinite]" />
         </div>
@@ -49,7 +49,7 @@ const CareerRoadmap = () => {
                 className={`w-full text-left p-4 rounded-xl border transition-all flex items-center justify-between group ${
                   selectedCareer?.title === career.title 
                   ? 'bg-primary/10 border-primary shadow-lg shadow-primary/10' 
-                  : 'bg-white/50 dark:bg-slate-800/50 border-border-glass hover:bg-slate-100 dark:hover:bg-slate-700'
+                  : 'bg-[#0B1F3A]/50 border-border-glass hover:bg-[#142C54]/50'
                 }`}
               >
                  <div className="flex flex-col">
@@ -68,9 +68,9 @@ const CareerRoadmap = () => {
              {!selectedCareer && !isGenerating && (
                 <motion.div 
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  className="glass p-12 rounded-[2rem] flex flex-col items-center justify-center text-center h-[500px] border border-dashed border-slate-300 dark:border-slate-700"
+                  className="glass p-12 rounded-[2rem] flex flex-col items-center justify-center text-center h-[500px] border border-dashed border-[rgba(212,175,55,0.2)]"
                 >
-                   <Compass className="w-20 h-20 text-slate-300 dark:text-slate-600 mb-6" />
+                   <Compass className="w-20 h-20 text-[#AAB4C5]/30 mb-6" />
                    <h2 className="text-2xl font-bold text-text-secondary mb-2">En attente de destination</h2>
                    <p className="text-text-secondary max-w-sm">Sélectionnez une carrière à gauche pour que le moteur IA génère la chronologie de compétences requise.</p>
                 </motion.div>
@@ -90,7 +90,7 @@ const CareerRoadmap = () => {
              {selectedCareer && !isGenerating && (
                <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
-                  className="glass p-8 rounded-[2rem] relative bg-gradient-to-br from-white/80 to-slate-50/80 dark:from-slate-900/80 dark:to-slate-800/80 backdrop-blur-xl"
+                  className="glass p-8 rounded-[2rem] relative bg-gradient-to-br from-[#0B1F3A]/80 to-[#0F1C2E]/80 backdrop-blur-xl"
                >
                   <div className="flex items-center justify-between mb-8 pb-6 border-b border-border-glass">
                     <div>
@@ -118,13 +118,13 @@ const CareerRoadmap = () => {
                          >
                            {/* Timeline Dot */}
                            <div className={`absolute -left-[41px] top-1 w-5 h-5 rounded-full border-4 flex items-center justify-center ${
-                             isFirst ? 'bg-primary border-primary shadow-[0_0_15px_#6366f1]' : 'bg-slate-200 dark:bg-slate-700 border-white dark:border-slate-800'
+                             isFirst ? 'bg-[#D4AF37] border-[#D4AF37] shadow-[0_0_15px_#D4AF37]' : 'bg-[#0B1F3A] border-[#0F1C2E]'
                            }`}>
                              {isFirst && <div className="w-1.5 h-1.5 bg-white rounded-full"></div>}
                            </div>
 
                            <div className={`p-5 rounded-2xl border transition-all hover:scale-[1.02] ${
-                             isFirst ? 'bg-primary/10 border-primary/30 shadow-md' : 'bg-white/60 dark:bg-slate-800/60 border-border-glass'
+                             isFirst ? 'bg-[#D4AF37]/10 border-[#D4AF37]/30 shadow-md' : 'bg-[#0F1C2E]/60 border-border-glass'
                            }`}>
                               <h4 className="font-bold text-text-primary text-lg flex items-center gap-2">
                                 {isFirst ? <CheckCircle2 className="w-5 h-5 text-primary" /> : <Lock className="w-5 h-5 text-slate-400" />}

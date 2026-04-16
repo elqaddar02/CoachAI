@@ -241,7 +241,7 @@ const StudentPage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 + i * 0.07 }}
                     onClick={() => navigate(`/course/${course.id}`)}
-                    className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-border-glass hover:border-primary/30 hover:bg-primary/5 cursor-pointer transition-all group text-left w-full"
+                    className="p-4 rounded-2xl bg-[#0B1F3A]/50 border border-border-glass hover:border-[#D4AF37]/30 hover:bg-[#D4AF37]/5 cursor-pointer transition-all group text-left w-full"
                   >
                     <div className="flex items-start gap-3">
                       <span className="text-xl flex-shrink-0">{course.badge}</span>
@@ -250,7 +250,7 @@ const StudentPage = () => {
                           <h4 className="text-sm font-bold text-text-primary leading-snug group-hover:text-primary transition-colors">{course.title}</h4>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs text-text-secondary font-bold bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded-lg">{course.duration}</span>
+                          <span className="text-xs text-[#AAB4C5] font-bold bg-[#0B1F3A] px-2 py-0.5 rounded-lg">{course.duration}</span>
                           <span className="text-xs font-bold text-primary px-2 py-0.5 rounded-lg bg-primary/10">{course.level}</span>
                           <span className="text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity ml-1">→ Open</span>
                         </div>
@@ -344,8 +344,8 @@ const StudentPage = () => {
               <div className="space-y-4">
                 {isAnalyzing ? (
                   <div className="animate-pulse space-y-3">
-                    <div className="h-16 bg-slate-200 dark:bg-slate-700 rounded-2xl"></div>
-                    <div className="h-16 bg-slate-200 dark:bg-slate-700 rounded-2xl"></div>
+                    <div className="h-16 bg-[#0B1F3A] rounded-2xl"></div>
+                    <div className="h-16 bg-[#0B1F3A] rounded-2xl"></div>
                   </div>
                 ) : weakSkills.length > 0 ? (
                   <>
@@ -386,7 +386,7 @@ const StudentPage = () => {
               {MOCK_BADGES.map(b => {
                 const isEarned = badges.includes(b.id) || (b.id === 'linux-master');
                 return (
-                  <div key={b.id} className={`p-4 rounded-2xl flex flex-col items-center text-center transition-all ${isEarned ? 'bg-slate-50 dark:bg-slate-800 shadow-md' : 'opacity-40 grayscale border border-dashed border-slate-300 dark:border-slate-700'}`}>
+                  <div key={b.id} className={`p-4 rounded-2xl flex flex-col items-center text-center transition-all ${isEarned ? 'bg-[#0B1F3A] shadow-md' : 'opacity-40 grayscale border border-dashed border-[rgba(212,175,55,0.15)]'}`}>
                     <div className={`w-12 h-12 rounded-xl ${b.color} flex items-center justify-center mb-3 shadow-lg`}>
                       <Shield className="text-white w-6 h-6" />
                     </div>

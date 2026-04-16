@@ -59,7 +59,7 @@ const AIResult = () => {
           height={windowSize.height}
           recycle={false}
           numberOfPieces={assignedLevel >= 3 ? 300 : 150}
-          colors={['#6366f1', '#8b5cf6', '#06b6d4', '#10b981', '#f59e0b']}
+          colors={['#D4AF37', '#F1D37A', '#142C54', '#10b981', '#0B1F3A']}
           style={{ zIndex: 100 }}
         />
       )}
@@ -82,7 +82,7 @@ const AIResult = () => {
             AI Analysis Complete
           </div>
           <h1 className="text-4xl md:text-5xl font-black text-text-primary mb-3">
-            Your Learning <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Profile</span>
+            Your Learning <span className="bg-gradient-to-r from-[#142C54] to-[#D4AF37] bg-clip-text text-transparent">Profile</span>
           </h1>
           <p className="text-text-secondary text-lg">
             Based on your {domain?.name} assessment — here's what our AI found.
@@ -231,7 +231,7 @@ const AIResult = () => {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-2 mb-1">
                         <h4 className="text-sm font-bold text-text-primary leading-snug group-hover:text-primary transition-colors">{course.title}</h4>
-                        <span className="text-xs text-text-secondary font-bold flex-shrink-0 bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded-lg">{course.duration}</span>
+                        <span className="text-xs text-[#AAB4C5] font-bold flex-shrink-0 bg-[#0B1F3A] px-2 py-0.5 rounded-lg">{course.duration}</span>
                       </div>
                       <p className="text-xs text-text-secondary leading-relaxed">{course.description}</p>
                       <div className="flex items-center gap-2 mt-2">
@@ -268,7 +268,7 @@ const AIResult = () => {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => navigate('/student')}
-            className="flex-1 flex items-center justify-center gap-3 py-4 rounded-2xl bg-gradient-to-r from-primary to-secondary text-white font-bold text-lg shadow-2xl shadow-primary/30 hover:shadow-primary/50 transition-all"
+            className="flex-1 flex items-center justify-center gap-3 py-4 rounded-2xl bg-gradient-to-r from-[#142C54] to-[#D4AF37] text-white font-bold text-lg shadow-2xl shadow-[#D4AF37]/20 hover:shadow-[#D4AF37]/40 transition-all"
           >
             Go to My Dashboard
             <ArrowRight className="w-5 h-5" />
@@ -276,7 +276,7 @@ const AIResult = () => {
 
           <button
             onClick={handleRetake}
-            className="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl border border-border-glass text-text-secondary hover:text-text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-all font-bold"
+            className="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl border border-[rgba(212,175,55,0.15)] text-[#AAB4C5] hover:text-white hover:bg-[#0B1F3A] transition-all font-bold"
           >
             <RotateCcw className="w-4 h-4" />
             Retake Test

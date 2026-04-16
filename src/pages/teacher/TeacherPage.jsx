@@ -18,9 +18,9 @@ const TeacherPage = () => {
       initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
       className="space-y-8"
     >
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 glass p-8 rounded-[2rem] border-b-4 border-indigo-500">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 glass p-8 rounded-[2rem] border-b-4 border-[#D4AF37]/30">
         <div>
-          <h1 className="text-3xl font-extrabold text-text-primary mb-2 font-outfit">The Skill <span className="text-indigo-500">Strategist</span></h1>
+          <h1 className="text-3xl font-extrabold text-text-primary mb-2 font-outfit">The Skill <span className="text-[#D4AF37]">Strategist</span></h1>
           <p className="text-text-secondary text-lg">Course Engineering & Cohort Monitoring</p>
         </div>
         <div className="flex gap-4">
@@ -35,7 +35,7 @@ const TeacherPage = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {[
-          { label: 'Active Cohort', value: '45 Devs', icon: Users, color: 'text-indigo-500', bg: 'bg-indigo-500/10' },
+          { label: 'Active Cohort', value: '45 Devs', icon: Users, color: 'text-[#D4AF37]', bg: 'bg-[#D4AF37]/10' },
           { label: 'DevOps Mastery Avg', value: '72%', icon: Server, color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
           { label: 'Cloud Architecture Avg', value: '68%', icon: Cloud, color: 'text-blue-500', bg: 'bg-blue-500/10' },
           { label: 'Critical AI Alerts', value: '2', icon: AlertTriangle, color: 'text-error', bg: 'bg-error/10' },
@@ -48,8 +48,8 @@ const TeacherPage = () => {
               {stat.icon && <stat.icon className="w-6 h-6" />}
             </div>
             <div>
-              <p className="text-xs font-bold text-text-secondary uppercase">{stat.label}</p>
-              <h2 className="text-2xl font-black text-text-primary font-outfit">{stat.value}</h2>
+           <p className="text-xs font-bold text-[#AAB4C5] uppercase">{stat.label}</p>
+              <h2 className="text-2xl font-black text-white font-outfit">{stat.value}</h2>
             </div>
           </motion.div>
         ))}
@@ -66,7 +66,7 @@ const TeacherPage = () => {
               <input
                 type="text"
                 placeholder="Search tech stack or student..."
-                className="pl-10 pr-4 py-2 bg-slate-100/50 dark:bg-slate-800/50 rounded-xl text-sm outline-none focus:ring-2 focus:ring-primary/20 text-text-primary"
+                className="pl-10 pr-4 py-2 bg-[#0B1F3A]/50 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#D4AF37]/20 text-white"
               />
             </div>
           </div>
@@ -86,7 +86,7 @@ const TeacherPage = () => {
                   <motion.tr
                     key={student.id}
                     initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 * i }}
-                    className="border-b border-border-glass/50 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors"
+                    className="border-b border-[rgba(212,175,55,0.1)] hover:bg-[#0B1F3A]/40 transition-colors"
                   >
                     <td className="py-4 px-4 font-bold">{student.name}</td>
                     <td className="py-4 px-4 text-primary font-bold">DevOps Engineer</td>
@@ -117,7 +117,7 @@ const TeacherPage = () => {
           </h3>
           <div className="space-y-4 relative z-10">
             {activeAlerts.map((alert) => (
-              <div key={alert.id} className="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-error/30 shadow-md transform hover:scale-105 transition-transform">
+              <div key={alert.id} className="p-4 rounded-xl bg-[#0F1C2E] border border-error/30 shadow-md transform hover:scale-105 transition-transform">
                 <h4 className="font-bold text-text-primary text-sm mb-1">{alert.student}</h4>
                 <p className="text-xs font-semibold mb-3 text-text-secondary line-clamp-2">{alert.issue}</p>
                 <button onClick={() => navigate('/student')} className="w-full text-xs font-bold py-2 bg-error text-white rounded-lg hover:shadow-md hover:bg-red-600 transition-all flex justify-center items-center gap-2">
