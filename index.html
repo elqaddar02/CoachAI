@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>learnpulse</title>
+  </head>
+  <body>
+    <div id="root">
+      <div id="loading-fallback" style="padding: 20px; font-family: monospace;">Loading React App...</div>
+    </div>
+    <script>
+      window.addEventListener('error', function(e) {
+        document.body.innerHTML = '<div style="color: red; padding: 20px; font-family: monospace; background: #fee;"><h3>CRITICAL JAVASCRIPT ERROR:</h3><p>' + e.message + '</p><pre>' + e.filename + ':' + e.lineno + '</pre></div>';
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        document.body.innerHTML = '<div style="color: red; padding: 20px; font-family: monospace; background: #fee;"><h3>UNHANDLED PROMISE REJECTION:</h3><p>' + (e.reason && e.reason.message || e.reason) + '</p></div>';
+      });
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body> 
+</html>
