@@ -55,7 +55,7 @@ const Certifications = () => {
                       <ShieldCheck className={`w-8 h-8 ${cert.status === 'unlocked' ? 'text-emerald-500' : 'text-slate-400'}`} />
                     </div>
                     <h2 className="text-2xl font-black text-text-primary mb-2 leading-tight">{cert.title}</h2>
-                    <p className="text-sm text-text-secondary">Approuvé par LearnPulse AI Engine</p>
+                    <p className="text-sm text-slate-500 font-bold uppercase tracking-widest">Verified by Pulse Institute Registration Office</p>
                   </div>
 
                   <div className="mt-8 pt-6 border-t border-border-glass flex justify-between items-center">

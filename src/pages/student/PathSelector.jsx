@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Cloud, Settings, Shield, Database, ArrowRight, Sparkles, CheckCircle } from 'lucide-react';
+import { Code, Cloud, Settings, Shield, Database, ArrowRight, Sparkles, CheckCircle, GraduationCap } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setSelectedPath } from '../../store/slices/learningSlice';
@@ -15,11 +15,11 @@ const domainIcons = {
 };
 
 const domainMeta = {
-  'web-dev':  { gradient: 'from-blue-500 to-cyan-500',    glow: 'shadow-blue-500/30',   bg: 'bg-blue-500/10 dark:bg-blue-500/5',   border: 'border-blue-500/30',  emoji: '⚡', desc: 'React, Node.js, TypeScript, APIs, UI/UX' },
-  cloud:      { gradient: 'from-cyan-500 to-teal-500',    glow: 'shadow-cyan-500/30',   bg: 'bg-cyan-500/10 dark:bg-cyan-500/5',   border: 'border-cyan-500/30',  emoji: '☁️', desc: 'AWS, Azure, GCP, Serverless, Networking' },
-  devops:     { gradient: 'from-orange-500 to-amber-500', glow: 'shadow-orange-500/30', bg: 'bg-orange-500/10 dark:bg-orange-500/5',border:'border-orange-500/30', emoji: '⚙️', desc: 'Docker, Kubernetes, CI/CD, Terraform, Linux' },
-  cyber:      { gradient: 'from-red-500 to-rose-500',     glow: 'shadow-red-500/30',    bg: 'bg-red-500/10 dark:bg-red-500/5',     border: 'border-red-500/30',   emoji: '🛡️', desc: 'Ethical Hacking, Pentesting, Security, Networks' },
-  'data-ai':  { gradient: 'from-violet-500 to-purple-600',glow: 'shadow-violet-500/30', bg: 'bg-violet-500/10 dark:bg-violet-500/5',border:'border-violet-500/30', emoji: '🤖', desc: 'Python, ML, Deep Learning, SQL, Data Viz' },
+  'web-dev':  { color: '#1E3A8A', emoji: '💻', desc: 'React, Node.js, TypeScript, APIs, UI/UX' },
+  cloud:      { color: '#1E3A8A', emoji: '☁️', desc: 'AWS, Azure, GCP, Serverless, Networking' },
+  devops:     { color: '#1E3A8A', emoji: '⚙️', desc: 'Docker, Kubernetes, CI/CD, Terraform, Linux' },
+  cyber:      { color: '#1E3A8A', emoji: '🛡️', desc: 'Ethical Hacking, Pentesting, Security, Networks' },
+  'data-ai':  { color: '#1E3A8A', emoji: '📊', desc: 'Python, ML, Analytics, SQL, Data Viz' },
 };
 
 const containerVariants = {
@@ -28,8 +28,8 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
-  show: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 120, damping: 14 } },
+  hidden: { opacity: 0, y: 20, scale: 0.98 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 120, damping: 20 } },
 };
 
 const PathSelector = () => {
@@ -48,39 +48,36 @@ const PathSelector = () => {
   };
 
   return (
-    <div className="min-h-screen bg-bg flex flex-col items-center justify-start py-12 px-4 relative overflow-hidden font-outfit">
-      {/* Background glows */}
-      <div className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-start py-14 px-4 relative overflow-hidden font-inter">
+      
+      {/* Institutional Background Decoration */}
+      <div className="absolute top-0 left-0 w-full h-1/3 bg-[#1E3A8A] z-0 shadow-lg"></div>
+      <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] z-10 pointer-events-none"></div>
 
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="w-full max-w-5xl relative z-10"
+        className="w-full max-w-5xl relative z-20"
       >
-        {/* Header */}
-        <motion.div variants={itemVariants} className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-bold mb-6">
-            <Sparkles className="w-4 h-4" />
-            AI-Powered Personalization
+        {/* Header Section */}
+        <motion.div variants={itemVariants} className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-[10px] font-black uppercase tracking-[0.2em] mb-8 backdrop-blur-md">
+            <GraduationCap className="w-4 h-4 text-[#B59A57]" />
+            Pulse Institute Enrollment
           </div>
-          <h1 className="text-4xl md:text-5xl font-black text-text-primary mb-4 leading-tight">
-            What's your{' '}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              learning path
-            </span>
-            ?
+          <h1 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight tracking-tight font-outfit">
+            Select Your <span className="text-[#B59A57]">Academic Track</span>
           </h1>
-          <p className="text-text-secondary text-lg max-w-xl mx-auto">
-            {user?.name ? `Hey ${user.name}! ` : ''}Choose your IT domain and our AI will build a personalized learning plan for you.
+          <p className="text-slate-200 text-lg max-w-xl mx-auto font-medium">
+            {user?.name ? `${user.name}, ` : ''}Select your specialization and our adaptive engine will calibrate your professional learning roadmap.
           </p>
         </motion.div>
 
-        {/* Domain Cards Grid */}
+        {/* Track Selection Cards */}
         <motion.div
           variants={containerVariants}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
         >
           {IT_DOMAINS.map((domain) => {
             const meta = domainMeta[domain.id] || {};
@@ -91,30 +88,18 @@ const PathSelector = () => {
               <motion.button
                 key={domain.id}
                 variants={itemVariants}
-                whileHover={{ scale: 1.03, y: -4 }}
+                whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setSelected(domain.id)}
                 className={`
-                  relative w-full text-left p-6 rounded-[2rem] border-2 transition-all duration-300 group cursor-pointer overflow-hidden
+                  relative w-full text-left p-8 rounded-xl border-2 transition-all duration-300 overflow-hidden shadow-academic
                   ${isSelected
-                    ? `${meta.bg} ${meta.border} shadow-2xl ${meta.glow}`
-                    : 'glass border-border-glass hover:border-white/20 dark:hover:border-white/10'}
+                    ? 'bg-slate-50 border-[#1E3A8A] ring-2 ring-[#1E3A8A]/10'
+                    : 'bg-white border-slate-100 hover:border-[#1E3A8A]/30 hover:shadow-academic-lg'}
                 `}
                 id={`path-${domain.id}`}
               >
-                {/* Selection glow overlay */}
-                <AnimatePresence>
-                  {isSelected && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className={`absolute inset-0 bg-gradient-to-br ${meta.gradient} opacity-5 pointer-events-none`}
-                    />
-                  )}
-                </AnimatePresence>
-
-                {/* Check badge */}
+                {/* Selection Indicators */}
                 <AnimatePresence>
                   {isSelected && (
                     <motion.div
@@ -123,64 +108,62 @@ const PathSelector = () => {
                       exit={{ scale: 0, opacity: 0 }}
                       className="absolute top-4 right-4"
                     >
-                      <CheckCircle className="w-6 h-6 text-emerald-500" />
+                      <CheckCircle className="w-6 h-6 text-[#1E3A8A]" />
                     </motion.div>
                   )}
                 </AnimatePresence>
 
-                {/* Icon */}
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${meta.gradient} flex items-center justify-center mb-5 shadow-lg ${meta.glow} group-hover:scale-110 transition-transform duration-300`}>
-                  <IconComp className="w-7 h-7 text-white" />
+                {/* Icon Container - Institutional Blue */}
+                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 shadow-md border-2 border-white transition-all duration-300 
+                  ${isSelected ? 'bg-[#1E3A8A] text-[#B59A57]' : 'bg-slate-100 text-[#1E3A8A]'}`}>
+                  <IconComp className="w-7 h-7" />
                 </div>
 
-                {/* Text */}
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-lg">{meta.emoji}</span>
-                  <h3 className="text-lg font-extrabold text-text-primary">{domain.name}</h3>
+                {/* Content */}
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-xl">{meta.emoji}</span>
+                  <h3 className="text-lg font-black text-[#1E3A8A] tracking-tight">{domain.name}</h3>
                 </div>
-                <p className="text-xs text-text-secondary leading-relaxed font-medium">
-                  {meta.desc}
+                <p className="text-xs text-slate-500 leading-relaxed font-bold uppercase tracking-wider">
+                   {meta.desc}
                 </p>
 
-                {/* Bottom indicator */}
-                <div className={`mt-4 h-1 rounded-full bg-gradient-to-r ${meta.gradient} transition-all duration-300 ${isSelected ? 'opacity-100 w-full' : 'opacity-0 w-0'}`} />
+                {/* Accent line */}
+                <div className={`mt-6 h-1 rounded-full transition-all duration-500 ${isSelected ? 'bg-[#B59A57] w-full opacity-100' : 'bg-slate-100 w-12 opacity-50'}`} />
               </motion.button>
             );
           })}
         </motion.div>
 
-        {/* CTA */}
-        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        {/* Primary Action */}
+        <motion.div variants={itemVariants} className="flex flex-col items-center justify-center gap-6">
           <motion.button
             onClick={handleContinue}
             disabled={!selected || isNavigating}
-            whileHover={selected ? { scale: 1.03 } : {}}
-            whileTap={selected ? { scale: 0.97 } : {}}
+            whileHover={selected ? { y: -2 } : {}}
+            whileTap={selected ? { scale: 0.98 } : {}}
             className={`
-              relative flex items-center justify-center gap-3 px-10 py-4 rounded-2xl font-bold text-lg transition-all duration-300 min-w-[260px]
-              ${selected
-                ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-2xl shadow-primary/30 hover:shadow-primary/50'
-                : 'bg-[#0B1F3A] text-[#AAB4C5]/50 cursor-not-allowed'}
+              btn-primary min-w-[320px] !py-5 text-xl
+              ${!selected ? 'opacity-40 grayscale cursor-not-allowed translate-y-0' : ''}
             `}
           >
             {isNavigating ? (
-              <>
+              <div className="flex items-center gap-3">
                 <div className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-                Starting Test...
-              </>
+                Calibrating Enrollment...
+              </div>
             ) : (
-              <>
-                {selected ? `Start ${IT_DOMAINS.find(d => d.id === selected)?.name} Test` : 'Select a Path First'}
-                {selected && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
-              </>
+              <div className="flex items-center gap-3">
+                {selected ? `Enroll in ${IT_DOMAINS.find(d => d.id === selected)?.name}` : 'Select an Academic Track'}
+                {selected && <ArrowRight className="w-6 h-6" />}
+              </div>
             )}
           </motion.button>
+          
+          <motion.p variants={itemVariants} className="text-slate-400 text-[10px] font-black uppercase tracking-[0.25em]">
+             Pulse Institute Professional Standards
+          </motion.p>
         </motion.div>
-
-        {/* Skip hint */}
-        <motion.p variants={itemVariants} className="text-center text-xs text-text-secondary mt-6">
-          You can change your path anytime from your dashboard settings.
-        </motion.p>
       </motion.div>
     </div>
   );

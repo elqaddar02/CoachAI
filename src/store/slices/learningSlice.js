@@ -165,7 +165,7 @@ export const processTestResults = (answers, pathId) => async (dispatch) => {
   dispatch(setTestResult({ assignedLevel, strengths, weaknesses, recommendedCourses }));
 
   const levelDef = LEVEL_DEFINITIONS[assignedLevel];
-  toast.success(`🎯 AI Result: You're a ${levelDef.label}! Courses unlocked.`, { duration: 5000 });
+  toast.success(`🎯 Assessment Result: You're a ${levelDef.label}! Courses unlocked.`, { duration: 5000 });
 };
 
 export default learningSlice.reducer;

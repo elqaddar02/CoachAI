@@ -5,7 +5,7 @@ export const IT_DOMAINS = [
   { id: 'cloud', name: 'Cloud Computing', icon: 'Cloud', color: 'cyan' },
   { id: 'devops', name: 'DevOps', icon: 'Settings', color: 'orange' },
   { id: 'cyber', name: 'Cybersecurity', icon: 'Shield', color: 'red' },
-  { id: 'data-ai', name: 'Data Science & AI', icon: 'Database', color: 'purple' }
+  { id: 'data-analytics', name: 'Data Science & Analytics', icon: 'Database', color: 'purple' }
 ];
 
 export const CAREER_PATHS = {
@@ -15,9 +15,9 @@ export const CAREER_PATHS = {
     requiredSkills: ['HTML/CSS/JS', 'React/Angular', 'Node.js/PHP', 'SQL/MySQL'],
     certifications: ['Full Stack Developer Certificate']
   },
-  'ai-engineer': {
-    title: 'AI / Machine Learning Engineer',
-    domain: 'data-ai',
+  'ml-specialist': {
+    title: 'Machine Learning Specialist',
+    domain: 'data-analytics',
     requiredSkills: ['Python', 'Machine Learning', 'Deep Learning', 'Data Science'],
     certifications: ['AWS Certified Machine Learning']
   },
@@ -35,7 +35,7 @@ export const CAREER_PATHS = {
   },
   'data-scientist': {
     title: 'Data Analyst / Data Scientist',
-    domain: 'data-ai',
+    domain: 'data-analytics',
     requiredSkills: ['SQL', 'Python', 'Excel', 'Power BI'],
     certifications: ['Google Data Analytics Certificate']
   },
@@ -87,14 +87,14 @@ export const MOCK_USERS = [
   {
     id: 'admin_1',
     name: 'Admin Boss',
-    email: 'admin@learnpulse.com',
+    email: 'admin@pulseinstitute.edu',
     role: 'admin',
     status: 'active'
   },
   {
     id: 'teacher_1',
     name: 'Sarah Connor',
-    email: 'teacher@learnpulse.com',
+    email: 'teacher@pulseinstitute.edu',
     role: 'teacher',
     subjects: ['devops', 'cloud'],
     status: 'active'
@@ -102,7 +102,7 @@ export const MOCK_USERS = [
   {
     id: 'student_1',
     name: 'Alex Developer',
-    email: 'student@learnpulse.com',
+    email: 'student@pulseinstitute.edu',
     role: 'student',
     status: 'active',
     gamification: {
@@ -168,7 +168,7 @@ export const PLACEMENT_QUESTIONS = {
     { id: 'wd14', topic: 'React',      question: 'What does `useMemo` do in React?',                                              options: ['Caches a function reference','Memoizes an expensive computed value','Fetches data','Manages routing'],           correctIndex: 1 },
     { id: 'wd15', topic: 'HTML',       question: 'Which attribute makes an `<input>` field mandatory?',                           options: ['mandatory','validate','required','notempty'],                                   correctIndex: 2 },
   ],
-  'data-ai': [
+  'data-analytics': [
     { id: 'da1',  topic: 'Python',     question: 'Which Python library is the foundation for scientific computing?',              options: ['Pandas','NumPy','Matplotlib','Scikit-learn'],                                    correctIndex: 1 },
     { id: 'da2',  topic: 'Python',     question: 'What does a Pandas DataFrame represent?',                                      options: ['A neural network layer','A 2D labeled data structure','A machine learning model','A SQL database'],              correctIndex: 1 },
     { id: 'da3',  topic: 'ML',         question: 'What is overfitting in machine learning?',                                     options: ['Model performs well on all data','Model learns training data too well and fails on new data','Model underfits test set','Model has too few parameters'], correctIndex: 1 },
@@ -241,14 +241,14 @@ export const RECOMMENDED_COURSES = {
     { id: 'wd-c6', title: 'Performance & Web Vitals',         duration: '6h',  level: 'Advanced',     levels: [3, 4],      badge: '🏎️', description: 'Optimize your web app for Core Web Vitals and best scores.' },
     { id: 'wd-c7', title: 'Full Stack Architecture & System Design', duration: '18h', level: 'Expert', levels: [4],         badge: '🏛️', description: 'Design scalable full-stack systems with microservices.' },
   ],
-  'data-ai': [
+  'data-analytics': [
     { id: 'da-c1', title: 'Python for Data Science',          duration: '10h', level: 'Beginner',     levels: [1],         badge: '🐍', description: 'Learn Python, NumPy, Pandas and data wrangling fundamentals.' },
     { id: 'da-c2', title: 'SQL & Database Querying',          duration: '8h',  level: 'Beginner',     levels: [1, 2],      badge: '🗄️', description: 'Write complex SQL queries for data analysis.' },
-    { id: 'da-c3', title: 'Machine Learning Fundamentals',    duration: '16h', level: 'Intermediate', levels: [2],         badge: '🤖', description: 'Supervised, unsupervised learning and model evaluation.' },
+    { id: 'da-c3', title: 'Machine Learning Fundamentals',    duration: '16h', level: 'Intermediate', levels: [2],         badge: '📈', description: 'Supervised, unsupervised learning and model evaluation.' },
     { id: 'da-c4', title: 'Data Visualization with Python',   duration: '6h',  level: 'Intermediate', levels: [2, 3],      badge: '📈', description: 'Build impactful charts with Matplotlib, Seaborn and Plotly.' },
     { id: 'da-c5', title: 'Deep Learning with PyTorch',       duration: '18h', level: 'Advanced',     levels: [3],         badge: '🧠', description: 'Build and train neural networks for complex tasks.' },
     { id: 'da-c6', title: 'MLOps & Model Deployment',         duration: '12h', level: 'Advanced',     levels: [3, 4],      badge: '🚀', description: 'Deploy ML models to production with FastAPI and Docker.' },
-    { id: 'da-c7', title: 'LLMs & Generative AI Engineering', duration: '20h', level: 'Expert',       levels: [4],         badge: '✨', description: 'Fine-tune LLMs, build RAG pipelines and AI agents.' },
+    { id: 'da-c7', title: 'Advanced Language Modeling',       duration: '20h', level: 'Expert',       levels: [4],         badge: '✨', description: 'Fine-tune complex models, build RAG pipelines and smart agents.' },
   ],
   cloud: [
     { id: 'cl-c1', title: 'AWS Cloud Practitioner',           duration: '10h', level: 'Beginner',     levels: [1],         badge: '☁️', description: 'Get your foundational AWS certification. Services overview.' },

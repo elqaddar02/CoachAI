@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import Tilt from 'react-parallax-tilt';
-import { Lock, Mail, ArrowRight, ShieldCheck, Cpu } from 'lucide-react';
+import { Lock, Mail, ArrowRight, ShieldCheck, GraduationCap, Award, BookOpen } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authenticateUser } from '../../store/slices/authSlice';
 import { useNavigate } from 'react-router-dom';
@@ -18,12 +17,12 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 15 },
   show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 120 } }
 };
 
 const Login = () => {
-  const [email, setEmail] = useState('student@learnpulse.com');
+  const [email, setEmail] = useState('student@pulseinstitute.edu');
   const [password, setPassword] = useState('password123');
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,140 +40,154 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#070F1F] flex items-center justify-center p-4 relative overflow-hidden font-outfit">
+    <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-4 relative overflow-hidden font-inter">
       
-      {/* Premium Animated Blobs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#142C54]/30 rounded-full blur-[120px] animate-blob"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#D4AF37]/10 rounded-full blur-[120px] animate-blob" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute top-[30%] left-[40%] w-[300px] h-[300px] bg-[#D4AF37]/5 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '4s' }}></div>
-
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
-
-      <Tilt 
-        tiltMaxAngleX={3} 
-        tiltMaxAngleY={3} 
-        perspective={1500} 
-        scale={1.01} 
-        transitionSpeed={2500}
-        className="w-full max-w-[1000px] z-10"
+      {/* Institutional Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-1/2 bg-[#1E3A8A] z-0"></div>
+      <div className="absolute top-[20%] right-[10%] w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] z-0"></div>
+      
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-[1000px] bg-white rounded-xl shadow-academic-lg flex flex-col md:flex-row overflow-hidden border border-slate-200 z-10"
       >
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }} 
-          animate={{ opacity: 1, scale: 1 }} 
-          transition={{ duration: 0.6, type: 'spring', bounce: 0.4 }}
-          className="w-full rounded-[2.5rem] flex flex-col md:flex-row overflow-hidden relative shadow-[0_20px_50px_rgba(0,0,0,0.4)] border border-[rgba(212,175,55,0.15)]"
-          style={{ background: 'rgba(15, 28, 46, 0.85)', backdropFilter: 'blur(40px)' }}
-        >
-          {/* Left Side: Product Value Panel */}
-          <div className="hidden md:flex md:w-1/2 p-14 bg-gradient-to-br from-[#0B1F3A] via-[#142C54] to-[#0B1F3A] text-white flex-col justify-between relative overflow-hidden shadow-inner">
-             <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[#D4AF37]/10 to-transparent opacity-50 mix-blend-overlay"></div>
-             
-             <div className="z-10">
-                <motion.div 
-                  initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }}
-                  className="flex items-center gap-3 mb-16"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-[#D4AF37]/20 flex items-center justify-center backdrop-blur-md shadow-[0_0_15px_rgba(212,175,55,0.3)] border border-[#D4AF37]/30">
-                    <span className="font-outfit font-black text-2xl tracking-tighter text-[#D4AF37]">L</span>
-                  </div>
-                  <h1 className="text-3xl font-bold font-outfit tracking-tight">LearnPulse<span className="text-[#D4AF37]">.</span></h1>
-                </motion.div>
-
-                <motion.div 
-                   variants={containerVariants}
-                   initial="hidden"
-                   animate="show"
-                >
-                   <motion.h2 variants={itemVariants} className="text-4xl font-black mb-6 leading-tight">Accélérez votre <br/>carrière IT avec l'I.A.</motion.h2>
-                   <motion.p variants={itemVariants} className="text-[#AAB4C5] text-lg mb-8 leading-relaxed">
-                     Rejoignez la plateforme qui analyse vos compétences et génère votre feuille de route unique vers le monde professionnel.
-                   </motion.p>
-                </motion.div>
-             </div>
-             
-             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="z-10 flex gap-6 text-sm font-bold text-white/80">
-                <span className="flex items-center gap-2"><Cpu className="w-4 h-4 text-[#D4AF37]" /> Smart Engine</span>
-                <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-[#F1D37A]" /> Cloud & DevOps</span>
-             </motion.div>
-          </div>
-
-          {/* Right Side: Login Form */}
-          <div className="w-full md:w-1/2 p-10 md:p-14 bg-[#0F1C2E]/90 backdrop-blur-3xl flex flex-col justify-center">
-            <motion.div 
-               variants={containerVariants}
-               initial="hidden"
-               animate="show"
-               className="w-full space-y-8"
-            >
-              <motion.div variants={itemVariants} className="mb-2 text-center md:text-left">
-                <h2 className="text-3xl font-extrabold text-white mb-2">Bon retour ! 👋</h2>
-                <p className="text-[#AAB4C5] font-medium">Entrez vos accès pour continuer votre progression.</p>
-              </motion.div>
-
-              <motion.form variants={itemVariants} onSubmit={handleSubmit} className="space-y-6">
-                <div className="group">
-                  <label className="block text-[11px] font-black text-[#AAB4C5] mb-2 uppercase tracking-widest transition-colors group-focus-within:text-[#D4AF37]">Adresse Email</label>
-                  <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#AAB4C5] group-focus-within:text-[#D4AF37] transition-colors" />
-                    <input 
-                      type="email" 
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full pl-12 pr-4 py-3 bg-[#0B1F3A]/60 border border-[rgba(212,175,55,0.15)] rounded-2xl outline-none focus:border-[#D4AF37]/50 focus:ring-2 focus:ring-[#D4AF37]/20 focus:bg-[#0B1F3A] transition-all font-medium text-white shadow-inner" 
-                      required
-                    />
-                  </div>
+        {/* Left Side: Institutional Panel */}
+        <div className="hidden md:flex md:w-5/12 p-12 bg-[#1E3A8A] text-white flex-col justify-between relative overflow-hidden">
+           <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#B59A57_0%,transparent_70%)] opacity-30"></div>
+           </div>
+           
+           <div className="z-10">
+              <motion.div 
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
+                className="flex items-center gap-3 mb-16"
+              >
+                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center border border-white/20">
+                  <GraduationCap className="text-[#B59A57] w-6 h-6" />
                 </div>
-
-                <div className="group">
-                  <div className="flex justify-between items-center mb-2">
-                    <label className="text-[11px] font-black text-[#AAB4C5] uppercase tracking-widest transition-colors group-focus-within:text-[#D4AF37]">Mot de passe</label>
-                    <a href="#" className="text-[11px] font-bold text-[#D4AF37] hover:text-[#F1D37A] transition-colors">Mot de passe oublié ?</a>
-                  </div>
-                  <div className="relative">
-                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#AAB4C5] group-focus-within:text-[#D4AF37] transition-colors" />
-                    <input 
-                      type="password" 
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="w-full pl-12 pr-4 py-3 bg-[#0B1F3A]/60 border border-[rgba(212,175,55,0.15)] rounded-2xl outline-none focus:border-[#D4AF37]/50 focus:ring-2 focus:ring-[#D4AF37]/20 focus:bg-[#0B1F3A] transition-all font-medium text-white shadow-inner" 
-                      required
-                    />
-                  </div>
-                </div>
-
-                {error && (
-                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="p-3 bg-error/10 border border-error/20 rounded-xl text-error text-xs font-bold flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-error animate-pulse"></div> {error}
-                  </motion.div>
-                )}
-
-                <button type="submit" disabled={loading} className="w-full py-3 px-6 rounded-2xl bg-gradient-to-r from-[#142C54] to-[#D4AF37] hover:from-[#142C54] hover:to-[#F1D37A] text-white font-bold tracking-wide transition-all shadow-lg shadow-[#D4AF37]/20 hover:shadow-[#D4AF37]/40 active:scale-[0.98] flex items-center justify-center gap-2 group">
-                  {loading ? (
-                     <div className="flex items-center gap-2"><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> Connexion...</div>
-                  ) : (
-                    <>
-                      Se connecter à l'espace 
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:scale-110 transition-transform" />
-                    </>
-                  )}
-                </button>
-              </motion.form>
-
-              {/* Development Hints */}
-              <motion.div variants={itemVariants} className="mt-8 pt-6 border-t border-[rgba(212,175,55,0.15)]">
-                <p className="text-[10px] font-bold text-[#AAB4C5] mb-3 uppercase tracking-widest text-center">Identifiants de test</p>
-                <div className="flex flex-wrap justify-center gap-2">
-                  <span className="text-[11px] px-3 py-1.5 bg-[#0B1F3A]/80 rounded-lg font-mono font-bold text-[#AAB4C5] border border-[rgba(212,175,55,0.15)]">student@learnpulse.com</span>
-                  <span className="text-[11px] px-3 py-1.5 bg-[#0B1F3A]/80 rounded-lg font-mono font-bold text-[#AAB4C5] border border-[rgba(212,175,55,0.15)]">teacher@learnpulse.com</span>
-                  <span className="text-[11px] px-3 py-1.5 bg-[#0B1F3A]/80 rounded-lg font-mono font-bold text-[#AAB4C5] border border-[rgba(212,175,55,0.15)]">admin@learnpulse.com</span>
+                <div>
+                  <h1 className="text-xl font-black tracking-tight font-outfit leading-none mb-1">Pulse</h1>
+                  <p className="text-[9px] font-bold text-[#B59A57] uppercase tracking-[0.2em] leading-none">Institute</p>
                 </div>
               </motion.div>
+
+              <motion.div 
+                 variants={containerVariants}
+                 initial="hidden"
+                 animate="show"
+              >
+                 <motion.h2 variants={itemVariants} className="text-3xl font-bold mb-6 leading-tight">Excellence Académique <br/>& Innovation IT</motion.h2>
+                 <motion.p variants={itemVariants} className="text-slate-300 text-base mb-8 leading-relaxed font-medium">
+                   Rejoignez l'élite des professionnels de la tech. Une formation certifiante adaptée à votre potentiel réel.
+                 </motion.p>
+                 
+                 <motion.div variants={itemVariants} className="space-y-4">
+                    <div className="flex items-center gap-3 text-sm font-semibold text-slate-200">
+                      <div className="w-6 h-6 rounded-md bg-[#B59A57]/20 flex items-center justify-center border border-[#B59A57]/30">
+                        <Award className="w-3.5 h-3.5 text-[#B59A57]" />
+                      </div> Certifications Internationales
+                    </div>
+                    <div className="flex items-center gap-3 text-sm font-semibold text-slate-200">
+                      <div className="w-6 h-6 rounded-md bg-[#B59A57]/20 flex items-center justify-center border border-[#B59A57]/30">
+                        <BookOpen className="w-3.5 h-3.5 text-[#B59A57]" />
+                      </div> Cursus Personnalisé
+                    </div>
+                 </motion.div>
+              </motion.div>
+           </div>
+           
+           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="z-10 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+              © 2026 Pulse Institute — Portal v2.4
+           </motion.div>
+        </div>
+
+        {/* Right Side: Login Form */}
+        <div className="w-full md:w-7/12 p-10 md:p-16 bg-white flex flex-col justify-center">
+          <motion.div 
+             variants={containerVariants}
+             initial="hidden"
+             animate="show"
+             className="w-full max-w-sm mx-auto space-y-8"
+          >
+            <motion.div variants={itemVariants} className="text-center md:text-left mb-2">
+              <h2 className="text-2xl font-black text-[#1E3A8A] mb-1">Authentification</h2>
+              <p className="text-slate-500 text-sm font-medium">Accédez à votre espace pédagogique sécurisé.</p>
             </motion.div>
-          </div>
-        </motion.div>
-      </Tilt>
+
+            <motion.form variants={itemVariants} onSubmit={handleSubmit} className="space-y-5">
+              <div className="space-y-1.5">
+                <label className="block text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-widest">Identifiant Académique</label>
+                <div className="relative group">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slate-400 group-focus-within:text-[#1E3A8A] transition-colors" />
+                  <input 
+                    type="email" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="input-focus w-full pl-12 pr-4 py-3 text-sm font-medium" 
+                    placeholder="email@pulseinstitute.edu"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <div className="flex justify-between items-center mb-1">
+                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Mot de passe</label>
+                  <a href="#" className="text-[10px] font-bold text-[#B59A57] hover:underline">Oubli ?</a>
+                </div>
+                <div className="relative group">
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slate-400 group-focus-within:text-[#1E3A8A] transition-colors" />
+                  <input 
+                    type="password" 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="input-focus w-full pl-12 pr-4 py-3 text-sm font-medium" 
+                    placeholder="••••••••"
+                    required
+                  />
+                </div>
+              </div>
+
+              {error && (
+                <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="p-3 bg-red-50 border border-red-100 rounded-lg text-red-600 text-xs font-bold flex items-center gap-2">
+                   {error}
+                </motion.div>
+              )}
+
+              <button type="submit" disabled={loading} className="btn-primary w-full !py-3.5 shadow-md active:scale-[0.98]">
+                {loading ? (
+                   <div className="flex items-center gap-2"><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> Connexion...</div>
+                ) : (
+                  <>
+                    Accéder au Portail 
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
+              </button>
+            </motion.form>
+
+            {/* Institutional Credentials Hints */}
+            <motion.div variants={itemVariants} className="mt-8 pt-6 border-t border-slate-100">
+              <p className="text-[9px] font-bold text-slate-400 mb-3 uppercase tracking-widest text-center">Comptes de test (Staging)</p>
+              <div className="grid grid-cols-1 gap-2">
+                <div className="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg">
+                  <span className="text-[10px] font-mono font-bold text-slate-500">student@pulseinstitute.edu</span>
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 bg-blue-100 text-blue-700 rounded-md">Étudiant</span>
+                </div>
+                <div className="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg">
+                  <span className="text-[10px] font-mono font-bold text-slate-500">teacher@pulseinstitute.edu</span>
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 bg-purple-100 text-purple-700 rounded-md">Enseignant</span>
+                </div>
+                <div className="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg">
+                  <span className="text-[10px] font-mono font-bold text-slate-500">admin@pulseinstitute.edu</span>
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 bg-red-100 text-red-700 rounded-md">Admin</span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.div>
     </div>
   );
 };

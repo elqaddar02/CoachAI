@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ArrowLeft, ChevronRight, AlertTriangle, X, Brain } from 'lucide-react';
+import { ArrowRight, ArrowLeft, ChevronRight, AlertTriangle, X, GraduationCap, ClipboardCheck, Sparkles } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { recordAnswer, processTestResults } from '../../store/slices/learningSlice';
@@ -56,78 +56,79 @@ const PlacementTest = () => {
       questionId, answerIndex
     }));
     await dispatch(processTestResults(answersArray, selectedPath));
-    navigate('/ai-result');
+    navigate('/analysis-result');
   };
 
   const selectedForCurrent = localAnswers[currentQuestion?.id];
   const answeredCount = Object.keys(localAnswers).length;
   const isLastQuestion = currentIdx === totalQuestions - 1;
-  const canFinish = answeredCount >= Math.ceil(totalQuestions * 0.6); // at least 60% answered
+  const canFinish = answeredCount >= Math.ceil(totalQuestions * 0.5); // reduced threshold for demo
 
   const slideVariants = {
-    enter: (dir) => ({ opacity: 0, x: dir > 0 ? 80 : -80 }),
-    center: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 200, damping: 22 } },
-    exit: (dir) => ({ opacity: 0, x: dir > 0 ? -80 : 80, transition: { duration: 0.18 } }),
+    enter: (dir) => ({ opacity: 0, x: dir > 0 ? 50 : -50 }),
+    center: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 200, damping: 25 } },
+    exit: (dir) => ({ opacity: 0, x: dir > 0 ? -50 : 50, transition: { duration: 0.15 } }),
   };
 
   if (!currentQuestion) return null;
 
   return (
-    <div className="min-h-screen bg-bg flex flex-col items-center justify-start py-10 px-4 relative overflow-hidden font-outfit">
-      {/* Bg glows */}
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#142C54]/30 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#D4AF37]/8 rounded-full blur-[120px] pointer-events-none" />
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-start py-10 px-4 relative overflow-hidden font-inter">
+      
+      {/* Background Decoration */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="w-full max-w-3xl relative z-10">
 
-        {/* Top Bar */}
+        {/* Top Header */}
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#142C54] to-[#D4AF37] flex items-center justify-center shadow-lg shadow-[#D4AF37]/20">
-              <Brain className="w-5 h-5 text-white" />
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-[#1E3A8A] flex items-center justify-center shadow-md">
+              <GraduationCap className="w-6 h-6 text-[#B59A57]" />
             </div>
             <div>
-              <p className="text-xs font-bold text-text-secondary uppercase tracking-widest">Placement Test</p>
-              <p className="text-sm font-bold text-text-primary">{domain?.name || 'Assessment'}</p>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Pulse Academy</p>
+              <p className="text-lg font-black text-[#1E3A8A] leading-none">{domain?.name || 'Assessment'}</p>
             </div>
           </div>
           <button
             onClick={() => setShowExitModal(true)}
-            className="p-2 text-text-secondary hover:text-error hover:bg-error/10 rounded-xl transition-colors"
+            className="p-2.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </motion.div>
 
-        {/* Progress Section */}
-        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="mb-8">
-          <div className="flex justify-between items-center mb-3">
-            <span className="text-sm font-bold text-text-secondary">
-              Question <span className="text-text-primary">{currentIdx + 1}</span> of {totalQuestions}
+        {/* Progress Tracker */}
+        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="mb-10 bg-white p-6 rounded-xl border border-slate-200 shadow-academic">
+          <div className="flex justify-between items-center mb-4">
+            <span className="text-sm font-bold text-slate-500">
+              Examination Module <span className="text-[#1E3A8A]">{currentIdx + 1}</span> / {totalQuestions}
             </span>
-            <span className="text-sm font-bold text-[#D4AF37]">{answeredCount}/{totalQuestions} answered</span>
+            <span className="text-sm font-bold text-[#B59A57] px-3 py-1 bg-[#B59A57]/10 rounded-full">{answeredCount} Submitted</span>
           </div>
-          {/* Progress bar */}
-          <div className="w-full h-2 bg-[#0B1F3A] rounded-full overflow-hidden">
+          
+          <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden mb-6">
             <motion.div
-              className="h-full bg-gradient-to-r from-[#142C54] to-[#D4AF37] rounded-full"
+              className="h-full bg-gradient-to-r from-[#1E3A8A] to-[#B59A57] rounded-full"
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
               transition={{ type: 'spring', stiffness: 100 }}
             />
           </div>
-          {/* Step dots */}
-          <div className="flex gap-1 mt-3 flex-wrap">
+
+          <div className="flex gap-1.5 mt-2 flex-wrap">
             {questions.map((q, idx) => (
               <button
                 key={q.id}
                 onClick={() => { setDirection(idx > currentIdx ? 1 : -1); setCurrentIdx(idx); }}
-                className={`w-6 h-6 rounded-full text-[10px] font-bold transition-all duration-200 ${
+                className={`w-8 h-8 rounded-lg text-xs font-bold transition-all duration-200 border ${
                   idx === currentIdx
-                    ? 'bg-[#D4AF37] text-[#0B1F3A] scale-110 shadow-md shadow-[#D4AF37]/30'
+                    ? 'bg-[#1E3A8A] text-white border-[#1E3A8A] shadow-md scale-110'
                     : localAnswers[q.id] !== undefined
-                    ? 'bg-emerald-500/20 text-emerald-500 border border-emerald-500/30'
-                    : 'bg-[#0B1F3A] text-[#AAB4C5] hover:bg-[#142C54]'
+                    ? 'bg-emerald-50 text-emerald-600 border-emerald-100'
+                    : 'bg-white text-slate-400 border-slate-200 hover:border-slate-300'
                 }`}
               >
                 {idx + 1}
@@ -136,8 +137,8 @@ const PlacementTest = () => {
           </div>
         </motion.div>
 
-        {/* Question Card */}
-        <div className="relative overflow-hidden" style={{ minHeight: '340px' }}>
+        {/* Question Area */}
+        <div className="relative overflow-hidden" style={{ minHeight: '380px' }}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentQuestion.id}
@@ -146,54 +147,44 @@ const PlacementTest = () => {
               initial="enter"
               animate="center"
               exit="exit"
-              className="glass rounded-[2rem] p-8 border border-border-glass shadow-xl"
+              className="bg-white rounded-xl p-8 border border-slate-200 shadow-academic-lg"
             >
-              {/* Topic badge */}
-              <span className="inline-block px-3 py-1 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] text-xs font-bold uppercase tracking-wider mb-5">
-                {currentQuestion.topic}
-              </span>
+              <div className="flex items-center gap-2 mb-6">
+                <ClipboardCheck className="w-4 h-4 text-[#B59A57]" />
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
+                  Module: {currentQuestion.topic}
+                </span>
+              </div>
 
-              {/* Question */}
-              <h2 className="text-xl md:text-2xl font-bold text-text-primary mb-8 leading-snug">
+              <h2 className="text-2xl font-bold text-[#1E3A8A] mb-10 leading-snug">
                 {currentQuestion.question}
               </h2>
 
-              {/* Options */}
-              <div className="grid grid-cols-1 gap-3">
+              <div className="grid grid-cols-1 gap-4">
                 {currentQuestion.options.map((option, optIdx) => {
                   const isChosen = selectedForCurrent === optIdx;
                   return (
                     <motion.button
                       key={optIdx}
-                      whileHover={{ scale: 1.01 }}
+                      whileHover={{ x: 4 }}
                       whileTap={{ scale: 0.99 }}
                       onClick={() => handleAnswer(optIdx)}
-                      id={`option-${optIdx}`}
                       className={`
-                        flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all duration-200 group
+                        flex items-center gap-4 p-4 rounded-lg border-2 text-left transition-all duration-200
                         ${isChosen
-                          ? 'bg-[#D4AF37]/10 border-[#D4AF37]/60 shadow-lg shadow-[#D4AF37]/10'
-                          : 'bg-[#0B1F3A]/30 border-transparent hover:border-[#D4AF37]/30 hover:bg-[#D4AF37]/5'}
+                          ? 'bg-[#1E3A8A]/5 border-[#1E3A8A] shadow-sm'
+                          : 'bg-white border-slate-100 hover:border-slate-200 hover:bg-slate-50'}
                       `}
                     >
                       <span className={`
-                        w-9 h-9 rounded-xl flex items-center justify-center text-sm font-black flex-shrink-0 transition-all duration-200
-                        ${isChosen ? 'bg-[#D4AF37] text-[#0B1F3A]' : 'bg-[#0B1F3A] text-[#AAB4C5] group-hover:bg-[#D4AF37]/20 group-hover:text-[#D4AF37]'}
+                        w-8 h-8 rounded-md flex items-center justify-center text-xs font-black flex-shrink-0 transition-colors
+                        ${isChosen ? 'bg-[#1E3A8A] text-white' : 'bg-slate-100 text-slate-500'}
                       `}>
                         {optionLetters[optIdx]}
                       </span>
-                      <span className={`font-semibold text-sm md:text-base ${isChosen ? 'text-[#D4AF37]' : 'text-white'}`}>
+                      <span className={`font-semibold text-sm ${isChosen ? 'text-[#1E3A8A]' : 'text-slate-600'}`}>
                         {option}
                       </span>
-                      {isChosen && (
-                        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="ml-auto">
-                          <div className="w-5 h-5 rounded-full bg-[#D4AF37] flex items-center justify-center">
-                            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                            </svg>
-                          </div>
-                        </motion.div>
-                      )}
                     </motion.button>
                   );
                 })}
@@ -202,97 +193,97 @@ const PlacementTest = () => {
           </AnimatePresence>
         </div>
 
-        {/* Navigation */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="flex items-center justify-between mt-8 gap-4">
+        {/* Action Controls */}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="flex items-center justify-between mt-10">
           <button
             onClick={handlePrev}
             disabled={currentIdx === 0}
-            className="flex items-center gap-2 px-6 py-3 rounded-2xl border border-[rgba(212,175,55,0.15)] text-[#AAB4C5] hover:text-white hover:bg-[#0B1F3A] transition-all disabled:opacity-30 disabled:cursor-not-allowed font-bold"
+            className="flex items-center gap-2 px-6 py-3 rounded-lg border border-slate-200 text-slate-500 hover:text-[#1E3A8A] hover:bg-slate-50 transition-all disabled:opacity-30 disabled:cursor-not-allowed font-bold text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             Previous
           </button>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             {isLastQuestion ? (
               <motion.button
                 onClick={handleFinish}
                 disabled={!canFinish || isSubmitting}
-                whileHover={canFinish ? { scale: 1.03 } : {}}
-                whileTap={canFinish ? { scale: 0.97 } : {}}
+                whileHover={canFinish ? { y: -2 } : {}}
+                whileTap={canFinish ? { scale: 0.98 } : {}}
                 className={`
-                  flex items-center gap-3 px-8 py-3 rounded-2xl font-bold transition-all duration-300
+                  flex items-center gap-2 px-8 py-3 rounded-lg font-bold transition-all duration-300 text-sm
                   ${canFinish
-                    ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl shadow-emerald-500/30 hover:shadow-emerald-500/50'
-                    : 'bg-[#0B1F3A] text-[#AAB4C5]/50 cursor-not-allowed'}
+                    ? 'bg-[#059669] text-white shadow-md shadow-emerald-700/10 hover:bg-[#047857]'
+                    : 'bg-slate-200 text-slate-400 cursor-not-allowed'}
                 `}
               >
                 {isSubmitting ? (
-                  <><div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />Analyzing...</>
+                  <><div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />Processing...</>
                 ) : (
-                  <><Brain className="w-4 h-4" />Submit to AI</>
+                  <><Sparkles className="w-4 h-4 text-[#B59A57]" />Finalize Assessment</>
                 )}
               </motion.button>
             ) : (
               <button
                 onClick={handleNext}
-                className="flex items-center gap-2 px-8 py-3 rounded-2xl bg-gradient-to-r from-[#142C54] to-[#D4AF37] text-white font-bold transition-all shadow-lg shadow-[#D4AF37]/20 hover:shadow-[#D4AF37]/40"
+                className="btn-primary flex items-center gap-2 px-8 py-3 rounded-lg"
               >
-                Next
+                Next Step
                 <ChevronRight className="w-4 h-4" />
               </button>
             )}
           </div>
         </motion.div>
 
-        {/* Not enough answers warning */}
+        {/* Completion Info */}
         <AnimatePresence>
           {isLastQuestion && !canFinish && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, height: 0 }}
-              className="mt-4 p-3 bg-warning/10 border border-warning/30 rounded-xl text-warning text-sm font-bold flex items-center gap-2"
+              className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg text-amber-700 text-xs font-bold flex items-center gap-3 shadow-sm"
             >
               <AlertTriangle className="w-4 h-4 flex-shrink-0" />
-              Please answer at least {Math.ceil(totalQuestions * 0.6)} questions to get an accurate result.
+              Please provide more responses to ensure an accurate institutional skill analysis.
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {/* Exit Confirmation Modal */}
+      {/* Institutional Exit Modal */}
       <AnimatePresence>
         {showExitModal && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-[#070F1F]/80 backdrop-blur-md z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="glass rounded-[2rem] p-8 max-w-md w-full border border-border-glass shadow-2xl"
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-white rounded-xl p-8 max-w-md w-full border border-slate-200 shadow-academic-lg"
             >
-              <div className="w-14 h-14 rounded-2xl bg-warning/10 flex items-center justify-center mb-5">
-                <AlertTriangle className="w-7 h-7 text-warning" />
+              <div className="w-12 h-12 rounded-lg bg-red-50 flex items-center justify-center mb-6">
+                <AlertTriangle className="w-6 h-6 text-red-500" />
               </div>
-              <h3 className="text-xl font-bold text-text-primary mb-2">Exit the test?</h3>
-              <p className="text-text-secondary text-sm mb-6">Your progress won't be saved. You'll need to retake the test to get your AI-assigned level.</p>
+              <h3 className="text-xl font-bold text-[#1E3A8A] mb-2">Terminate Assessment?</h3>
+              <p className="text-slate-500 text-sm mb-8 leading-relaxed">Your Current evaluation progress will not be recorded. You must complete the modules to receive your institutional track assignment.</p>
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowExitModal(false)}
-                  className="flex-1 py-3 rounded-2xl border border-[rgba(212,175,55,0.15)] text-[#AAB4C5] hover:text-white hover:bg-[#0B1F3A] transition-all font-bold"
+                  className="flex-1 py-3 rounded-lg border border-slate-200 text-slate-500 font-bold text-sm hover:bg-slate-50 transition-colors"
                 >
-                  Continue Test
+                  Return to Test
                 </button>
                 <button
                   onClick={() => navigate('/student')}
-                  className="flex-1 py-3 rounded-2xl bg-warning/10 border border-warning/30 text-warning hover:bg-warning/20 transition-all font-bold"
+                  className="flex-1 py-3 rounded-lg bg-red-50 text-red-600 font-bold text-sm hover:bg-red-100 transition-colors border border-red-100"
                 >
-                  Exit Anyway
+                  Exit Assessment
                 </button>
               </div>
             </motion.div>

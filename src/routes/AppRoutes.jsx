@@ -12,10 +12,10 @@ import Certifications from "../pages/student/Certifications";
 import TeacherPage from "../pages/teacher/TeacherPage";
 import AdminPage from "../pages/admin/AdminPage";
 
-// AI Learning Flow (student-only)
+// Adaptive Learning Flow (student-only)
 import PathSelector from "../pages/student/PathSelector";
 import PlacementTest from "../pages/student/PlacementTest";
-import AIResult from "../pages/student/AIResult";
+import AnalysisResult from "../pages/student/AnalysisResult";
 import CoursePage from "../pages/student/CoursePage";
 
 const AppRoutes = () => {
@@ -33,7 +33,7 @@ const AppRoutes = () => {
           element={<Layout><Dashboard /></Layout>}
         />
 
-        {/* ── AI Learning Flow (student-only, no Layout shell) ── */}
+        {/* ── Adaptive Learning Flow (student-only, no Layout shell) ── */}
         <Route
           path="/choose-path"
           element={
@@ -51,10 +51,10 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/ai-result"
+          path="/analysis-result"
           element={
             <ProtectedRoute allowedRoles={["student"]}>
-              <AIResult />
+              <AnalysisResult />
             </ProtectedRoute>
           }
         />

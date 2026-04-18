@@ -9,8 +9,8 @@ const initialState = {
   isAnalyzing: false,
 };
 
-const aiSlice = createSlice({
-  name: 'ai',
+const engineSlice = createSlice({
+  name: 'engine',
   initialState,
   reducers: {
     startAnalysis: (state) => {
@@ -25,19 +25,22 @@ const aiSlice = createSlice({
   },
 });
 
-export const { startAnalysis, setAnalysisResult } = aiSlice.actions;
+export const { startAnalysis, setAnalysisResult } = engineSlice.actions;
 
-// Simulated AI Engine
+/**
+ * ─── Adaptive Performance Analysis ───
+ * Analyzes skill scores and generates personalized learning paths.
+ */
 export const analyzePerformance = (performanceData) => async (dispatch) => {
   dispatch(startAnalysis());
   
-  // Simulate heavy processing time
+  // Simulate processing time
   await new Promise((resolve) => setTimeout(resolve, 1500));
 
   const weakSkills = [];
   const recommendations = [];
 
-  // 1. Analyze Scores
+  // 1. Analyze Scores Layer
   Object.entries(performanceData).forEach(([skill, score]) => {
     if (score < 50) {
       weakSkills.push({ skill, score, critical: true });
@@ -45,14 +48,14 @@ export const analyzePerformance = (performanceData) => async (dispatch) => {
         id: `rec_${skill}_1`,
         type: 'course',
         title: `Fundamental Concepts of ${skill}`,
-        description: `Your score in ${skill} is critically low (${score}%). We recommend this foundational module.`,
+        description: `Your score in ${skill} is below institutional standards (${score}%). We recommend this foundational module.`,
         urgency: 'high'
       });
       recommendations.push({
         id: `rec_${skill}_2`,
         type: 'exercise',
-        title: `${skill} Practice Sandbox`,
-        description: `Interactive exercises to improve your ${skill} problem-solving skills.`,
+        title: `${skill} Practice Laboratory`,
+        description: `Guided exercises to improve your technical proficiency in ${skill}.`,
         urgency: 'medium'
       });
     } else if (score < 75) {
@@ -60,38 +63,37 @@ export const analyzePerformance = (performanceData) => async (dispatch) => {
       recommendations.push({
         id: `rec_${skill}_3`,
         type: 'project',
-        title: `Intermediate ${skill} Mini-Project`,
-        description: `Apply your knowledge to reinforce your understanding.`,
+        title: `Intermediate ${skill} Case Study`,
+        description: `Apply your knowledge to reinforce your conceptual understanding.`,
         urgency: 'low'
       });
     }
   });
 
-  // 2. Career Orientation Logic
+  // 2. Career Path Orientation
   let careerOrientation = null;
   
-  // Determine best career path based on highest scores
+  // Highest scores heuristic
   let maxScore = 0;
   let topSkill = '';
   Object.entries(performanceData).forEach(([skill, score]) => {
      if (score > maxScore) { maxScore = score; topSkill = skill; }
   });
 
-  // Simple heuristic router for Career
+  // Heuristic mapping
   if (['React', 'CSS', 'JavaScript'].includes(topSkill)) {
-    careerOrientation = CAREER_PATHS['frontend-dev'];
+    careerOrientation = CAREER_PATHS['fullstack-dev'];
   } else if (['Docker', 'AWS'].includes(topSkill)) {
     careerOrientation = CAREER_PATHS['cloud-architect'];
   }
 
-  // Final Action Phase
   dispatch(setAnalysisResult({ weakSkills, recommendations, careerOrientation }));
   
   if (weakSkills.length > 0) {
-    toast('AI has generated new learning recommendations for you!', { icon: '🤖' });
+    toast('The system has generated new learning recommendations for you!', { icon: '🎓' });
   } else {
     toast.success('Your performance is excellent across all modules!');
   }
 };
 
-export default aiSlice.reducer;
+export default engineSlice.reducer;

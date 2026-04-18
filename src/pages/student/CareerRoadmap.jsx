@@ -28,9 +28,9 @@ const CareerRoadmap = () => {
         </div>
         <div className="relative z-10">
           <h1 className="text-3xl font-extrabold text-text-primary mb-2 font-outfit flex items-center gap-3">
-             Career Roadmap <span className="px-3 py-1 bg-gradient-to-r from-primary to-secondary text-white text-xs rounded-full shadow-lg shadow-primary/30">AI Generator</span>
+             Career Roadmap <span className="px-3 py-1 bg-[#1E3A8A] text-white text-[10px] font-black uppercase tracking-widest rounded-lg shadow-md border border-white/20">System Verified</span>
           </h1>
-          <p className="text-text-secondary text-lg">Choisissez votre destination tech. L'IA tracera la route la plus rapide.</p>
+          <p className="text-slate-500 text-lg font-medium">Define your professional destination. Our system calibrates the optimal academic route.</p>
         </div>
       </div>
 

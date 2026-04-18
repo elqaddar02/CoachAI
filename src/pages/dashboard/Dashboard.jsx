@@ -1,12 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Tilt from 'react-parallax-tilt';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
-import { Activity, Target, Zap, Clock, TrendingUp } from 'lucide-react';
+import { Activity, Target, Zap, Clock, TrendingUp, Award, BarChart3, Globe } from 'lucide-react';
 
 const data = [
-  { name: 'Jan', score: 12, xp: 400 }, { name: 'Fév', score: 15, xp: 800 },
-  { name: 'Mar', score: 14, xp: 1200 }, { name: 'Avr', score: 18, xp: 2100 },
+  { name: 'Jan', score: 12, xp: 400 }, { name: 'Feb', score: 15, xp: 800 },
+  { name: 'Mar', score: 14, xp: 1200 }, { name: 'Apr', score: 18, xp: 2100 },
 ];
 
 const containerVariants = {
@@ -18,7 +17,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 15 },
   show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100 } }
 };
 
@@ -28,106 +27,110 @@ const Dashboard = () => {
       variants={containerVariants}
       initial="hidden"
       animate="show"
-      className="space-y-8 relative"
+      className="space-y-8 relative font-inter"
     >
-      <motion.div variants={itemVariants} className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 glass p-8 rounded-[2.5rem] relative overflow-hidden">
-        {/* Glow behind header */}
-        <div className="absolute top-[-50%] right-[-10%] w-96 h-96 bg-primary/20 blur-[100px] pointer-events-none"></div>
+      {/* Institutional Header */}
+      <motion.div variants={itemVariants} className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 bg-white p-10 rounded-xl border border-slate-200 shadow-academic relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-[#1E3A8A]/5 rounded-bl-full pointer-events-none"></div>
         <div className="relative z-10">
-          <h1 className="text-4xl font-black text-text-primary mb-2 font-outfit tracking-tight">Overview <span className="text-primary">Général</span></h1>
-          <p className="text-text-secondary text-lg font-medium">Vue macroscopique de l'activité. Bienvenue sur l'Intelligence Artificielle LearnPulse.</p>
+          <div className="flex items-center gap-2 text-[#B59A57] font-bold text-xs uppercase tracking-[0.2em] mb-3">
+             <Globe className="w-3 h-3" /> Global Network Status
+          </div>
+          <h1 className="text-4xl font-black text-[#1E3A8A] mb-2 font-outfit tracking-tight">Academic Overview</h1>
+          <p className="text-slate-500 text-base font-medium max-w-2xl">
+            Real-time macroeconomic view of institutional activity. Welcome to the Pulse Institute analysis portal.
+          </p>
         </div>
-        <div className="relative z-10 flex gap-4">
-           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-bold text-sm shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-             Système Opérationnel
+        <div className="relative z-10">
+           <div className="flex items-center gap-3 px-5 py-2.5 rounded-lg bg-[#059669]/5 text-[#059669] border border-[#059669]/20 font-bold text-sm shadow-sm">
+             <div className="w-2 h-2 rounded-full bg-[#059669] animate-pulse"></div>
+             Engine: Operational
            </div>
         </div>
       </motion.div>
 
+      {/* Main Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
         {[
-          { title: "Indice de Performance IA", value: "88%", trend: "+12.5%", icon: Activity, color: "text-primary", bg: "bg-primary/10" },
-          { title: "Objectifs de Carrière", value: "12 Actifs", trend: "Stable", icon: Target, color: "text-emerald-500", bg: "bg-emerald-500/10" },
-          { title: "Requêtes Serveur", value: "3.2M", trend: "+5.1%", icon: Zap, color: "text-warning", bg: "bg-warning/10" },
-          { title: "Temps d'Apprentissage", value: "142h", trend: "+12h", icon: Clock, color: "text-blue-500", bg: "bg-blue-500/10" },
+          { title: "Proficiency Index", value: "88.4%", trend: "+12.5%", icon: Activity, color: "text-[#1E3A8A]", bg: "bg-[#1E3A8A]/5" },
+          { title: "Career Enrollment", value: "1,240", trend: "Stable", icon: Target, color: "text-[#059669]", bg: "bg-[#059669]/5" },
+          { title: "Network Requests", value: "3.2M", trend: "+5.1%", icon: Zap, color: "text-[#B59A57]", bg: "bg-[#B59A57]/5" },
+          { title: "Instructional Hours", value: "14,2k", trend: "+12h", icon: Clock, color: "text-[#1E3A8A]", bg: "bg-[#1E3A8A]/5" },
         ].map((card, i) => (
-          <Tilt key={i} tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
-            <motion.div 
-              variants={itemVariants} 
-              className="p-6 rounded-[2rem] glass border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] relative overflow-hidden group h-full"
-            >
-               <div className="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity duration-500 transform group-hover:scale-110">
-                 <card.icon className="w-24 h-24" />
+          <motion.div 
+            key={i}
+            variants={itemVariants} 
+            className="p-8 rounded-xl bg-white border border-slate-200 shadow-academic hover:shadow-academic-lg transition-all duration-300 group"
+          >
+             <div className="flex justify-between items-start mb-6">
+               <div className={`p-3 rounded-lg ${card.bg} ${card.color} border border-current border-opacity-10`}>
+                  <card.icon className="w-6 h-6" />
                </div>
-               <div className="flex justify-between items-center mb-6 relative z-10">
-                 <div className={`p-4 rounded-2xl ${card.bg} ${card.color} shadow-inner`}>
-                    <card.icon className="w-6 h-6" />
-                 </div>
-                 <span className={`text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full ${card.trend.includes('+') ? 'bg-emerald-500/10 text-emerald-500' : 'bg-slate-500/10 text-slate-500'}`}>
-                   {card.trend}
-                 </span>
-               </div>
-               <div className="relative z-10">
-                 <p className="text-xs font-bold text-text-secondary uppercase tracking-widest mb-1">{card.title}</p>
-                 <h2 className="text-4xl font-black text-text-primary font-outfit">{card.value}</h2>
-               </div>
-            </motion.div>
-          </Tilt>
+               <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md ${card.trend.includes('+') ? 'bg-[#059669]/10 text-[#059669]' : 'bg-slate-100 text-slate-500'}`}>
+                 {card.trend}
+               </span>
+             </div>
+             <div>
+               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">{card.title}</p>
+               <h2 className="text-3xl font-black text-[#1E3A8A] font-outfit">{card.value}</h2>
+             </div>
+          </motion.div>
         ))}
       </div>
 
+      {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <motion.div variants={itemVariants} className="lg:col-span-2 glass p-8 rounded-[2.5rem] border border-white/10 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
-          <div className="flex justify-between items-center mb-8 relative z-10">
+        {/* Main Experience Chart */}
+        <motion.div variants={itemVariants} className="lg:col-span-2 bg-white p-8 rounded-xl border border-slate-200 shadow-academic relative overflow-hidden">
+          <div className="flex justify-between items-center mb-10">
             <div>
-              <h3 className="text-2xl font-bold text-text-primary font-outfit">Courbe d'Expérience (XP)</h3>
-              <p className="text-sm text-text-secondary mt-1">Évolution globale des cohortes sur le trimestre.</p>
+              <h3 className="text-xl font-bold text-[#1E3A8A] font-outfit">Cumulative Performance (XP)</h3>
+              <p className="text-sm text-slate-500 mt-1">Global quarterly evolution of student cohorts.</p>
             </div>
-            <button className="p-2 bg-[#0B1F3A] hover:bg-[#142C54] rounded-xl transition-colors">
-              <TrendingUp className="w-5 h-5 text-text-secondary" />
-            </button>
+            <div className="flex gap-2">
+               <button className="p-2.5 hover:bg-slate-50 rounded-lg text-slate-400 hover:text-[#1E3A8A] transition-colors border border-transparent hover:border-slate-200">
+                 <BarChart3 className="w-5 h-5" />
+               </button>
+            </div>
           </div>
-          <div className="h-72 w-full relative z-10">
+          <div className="h-80 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={data}>
                 <defs>
-                  <linearGradient id="colorXp" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#D4AF37" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#D4AF37" stopOpacity={0}/>
+                   <linearGradient id="colorXp" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#1E3A8A" stopOpacity={0.1}/>
+                    <stop offset="95%" stopColor="#1E3A8A" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(212,175,55,0.1)" />
-                <XAxis dataKey="name" stroke="currentColor" className="text-text-secondary text-xs font-bold" tickLine={false} />
-                <YAxis stroke="currentColor" className="text-text-secondary text-xs font-bold" tickLine={false} axisLine={false} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F1F5F9" />
+                <XAxis dataKey="name" stroke="#94A3B8" className="text-[10px] font-bold uppercase tracking-widest" tickLine={false} axisLine={false} dy={10} />
+                <YAxis stroke="#94A3B8" className="text-[10px] font-bold uppercase tracking-widest" tickLine={false} axisLine={false} dx={-10} />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: 'rgba(11, 31, 58, 0.95)', border: '1px solid rgba(212,175,55,0.2)', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
-                  itemStyle={{ color: '#fff', fontWeight: 'bold' }}
+                  contentStyle={{ backgroundColor: '#fff', border: '1px solid #E2E8F0', borderRadius: '8px', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }}
+                  itemStyle={{ color: '#1E3A8A', fontWeight: 'bold', fontSize: '12px' }}
                 />
-                <Area type="monotone" dataKey="xp" stroke="#D4AF37" strokeWidth={4} fillOpacity={1} fill="url(#colorXp)" />
+                <Area type="monotone" dataKey="xp" stroke="#1E3A8A" strokeWidth={3} fillOpacity={1} fill="url(#colorXp)" dot={{ fill: '#B59A57', stroke: '#fff', strokeWidth: 2, r: 4 }} activeDot={{ r: 6, fill: '#1E3A8A' }} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
         </motion.div>
 
-        <Tilt tiltMaxAngleX={2} tiltMaxAngleY={2} scale={1.02} transitionSpeed={2000} className="w-full h-full">
-           <motion.div variants={itemVariants} className="glass p-8 rounded-[2.5rem] border border-[rgba(212,175,55,0.15)] h-full flex flex-col justify-between bg-gradient-to-b from-[#0B1F3A] to-[#0F1C2E] text-white shadow-2xl relative overflow-hidden group">
-              <div className="absolute top-[-50px] right-[-50px] w-48 h-48 bg-[#D4AF37]/20 blur-[60px] rounded-full group-hover:bg-[#D4AF37]/30 transition-colors"></div>
-              <div className="relative z-10">
-                 <div className="w-14 h-14 bg-[rgba(212,175,55,0.1)] backdrop-blur-md border border-[rgba(212,175,55,0.2)] rounded-2xl flex items-center justify-center mb-6">
-                    <Zap className="w-6 h-6 text-warning" />
-                 </div>
-                 <h3 className="text-2xl font-bold font-outfit mb-3">Insights I.A Temps Réel</h3>
-                 <p className="text-[#AAB4C5] text-sm leading-relaxed mb-6">
-                   Le réseau neuronal détecte une forte propension des cohortes actuelles vers les profils "Cloud Architect" (Hausse de 40% de l'engagement AWS).
-                 </p>
-              </div>
-              <button className="relative z-10 w-full py-4 bg-[rgba(212,175,55,0.1)] hover:bg-[rgba(212,175,55,0.2)] border border-[rgba(212,175,55,0.2)] rounded-2xl font-bold text-sm text-white transition-all backdrop-blur-lg">
-                 Consulter le rapport
-              </button>
-           </motion.div>
-        </Tilt>
+        {/* Feature/Context Module */}
+        <motion.div variants={itemVariants} className="bg-[#1E3A8A] p-10 rounded-xl shadow-academic-lg text-white relative overflow-hidden flex flex-col justify-between">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[#B59A57]/10 rounded-bl-full pointer-events-none"></div>
+          <div>
+            <div className="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-8 border border-white/20">
+              <Award className="w-7 h-7 text-[#B59A57]" />
+            </div>
+            <h3 className="text-2xl font-bold font-outfit mb-4 text-white">Advanced Analytics</h3>
+            <p className="text-slate-300 text-sm leading-relaxed mb-8">
+              The analysis engine detects a significant trend toward Cloud Architecture specializations, with a 40% increase in AWS engagement.
+            </p>
+          </div>
+          <button className="w-full py-4 bg-[#B59A57] hover:bg-[#927A3F] text-white rounded-lg font-bold text-sm transition-all shadow-md">
+            Veritas Report
+          </button>
+        </motion.div>
       </div>
     </motion.div>
   );

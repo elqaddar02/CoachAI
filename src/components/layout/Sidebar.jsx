@@ -1,6 +1,7 @@
 import React from 'react';
-import { LayoutDashboard, Users, GraduationCap, BookOpen, Settings, Compass, ShieldCheck, Map, FolderEdit } from 'lucide-react';
+import { LayoutDashboard, Users, GraduationCap, BookOpen, Settings, Compass, ShieldCheck, Map, FolderEdit, Award } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { IT_DOMAINS, LEVEL_DEFINITIONS } from '../../services/mockData';
 
@@ -16,85 +17,85 @@ const Sidebar = ({ isOpen, toggle }) => {
 
   const menuItems = [
     { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard' },
-    { icon: GraduationCap, label: 'My Learning', href: '/student', studentOnly: true },
-    { icon: Compass, label: 'Career Roadmap', href: '/roadmap', studentOnly: true },
-    { icon: ShieldCheck, label: 'Certifications', href: '/certifications', studentOnly: true },
-    { icon: Users, label: 'Mentors', href: '/teacher' },
-    { icon: BookOpen, label: 'Tech Tracks', href: '/subjects' },
-    { icon: Settings, label: 'Orchestration', href: '/admin' },
+    { icon: GraduationCap, label: 'My Academy', href: '/student', studentOnly: true },
+    { icon: Compass, label: 'Learning Roadmap', href: '/roadmap', studentOnly: true },
+    { icon: ShieldCheck, label: 'Accreditations', href: '/certifications', studentOnly: true },
+    { icon: Users, label: 'Faculty Advisors', href: '/teacher' },
+    { icon: BookOpen, label: 'Knowledge Base', href: '/subjects' },
+    { icon: Settings, label: 'Administration', href: '/admin', adminOnly: true },
   ];
+
+  // Filter items based on user role
+  const filteredItems = menuItems.filter(item => {
+    if (item.studentOnly && !isStudent) return false;
+    if (item.adminOnly && user?.role !== 'admin') return false;
+    return true;
+  });
 
   return (
     <>
       {/* Mobile Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-[#070F1F]/80 backdrop-blur-sm z-40 lg:hidden transition-opacity"
+          className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 lg:hidden transition-opacity"
           onClick={toggle}
         />
       )}
 
       <aside className={`
         fixed lg:static inset-y-0 left-0 z-50
-        w-64 my-0 lg:my-6 ml-0 lg:ml-6
-        transition-all duration-500 ease-out flex flex-col
+        w-72 transition-all duration-300 ease-in-out flex flex-col
         ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} 
       `}>
-        {/* Floating Glass Container */}
-        <div className="h-full flex flex-col overflow-hidden shadow-2xl lg:shadow-glass border-r lg:border border-[rgba(212,175,55,0.15)] lg:rounded-2xl"
-             style={{ background: 'rgba(15, 28, 46, 0.85)', backdropFilter: 'blur(40px)' }}>
+        {/* Institutional Sidebar Container */}
+        <div className="h-full flex flex-col overflow-hidden bg-white border-r border-slate-200 shadow-academic">
           
-          {/* Logo Area */}
-          <div className="p-8 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#142C54] to-[#D4AF37] flex items-center justify-center shadow-lg shadow-[#D4AF37]/20">
-              <span className="text-white font-black text-xl">L</span>
+          {/* Branding Area */}
+          <Link to="/dashboard" className="p-8 flex items-center gap-3 group">
+            <div className="w-11 h-11 rounded-lg bg-[#1E3A8A] flex items-center justify-center shadow-md group-hover:bg-[#172E6E] transition-colors">
+              <GraduationCap className="text-[#B59A57] w-6 h-6" />
             </div>
-            <h1 className="text-2xl font-bold text-white tracking-tight font-outfit">
-              LearnPulse<span className="text-[#D4AF37]">.</span>
-            </h1>
-          </div>
+            <div>
+              <h1 className="text-xl font-black text-[#1E3A8A] tracking-tight font-outfit leading-none mb-1">
+                Pulse
+              </h1>
+              <p className="text-[10px] font-bold text-[#B59A57] uppercase tracking-[0.2em] leading-none">
+                Institute
+              </p>
+            </div>
+          </Link>
 
-          {/* AI Path Badge (students only) */}
+          {/* User Enrollment Badge (Academic Track) */}
           {isStudent && selectedPath && (
-            <div className="mx-4 mb-2 p-3 rounded-2xl bg-[#D4AF37]/5 border border-[#D4AF37]/15">
-              <div className="flex items-center justify-between mb-1">
-                <p className="text-[10px] font-black text-[#AAB4C5] uppercase tracking-widest">Active Path</p>
+            <div className="mx-6 mb-6 p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="flex items-center justify-between mb-2">
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Enrolled Track</p>
                 <Link
                   to="/choose-path"
-                  className="text-[10px] font-bold text-[#D4AF37] hover:underline flex items-center gap-1"
+                  className="text-[10px] font-bold text-[#1E3A8A] hover:text-[#B59A57] flex items-center gap-1 transition-colors"
                 >
-                  <FolderEdit className="w-3 h-3" /> Change
+                  <FolderEdit className="w-3 h-3" /> Update
                 </Link>
               </div>
-              <p className="text-sm font-bold text-white truncate">{domain?.name}</p>
+              <p className="text-sm font-bold text-[#1E3A8A] truncate">{domain?.name}</p>
               {testCompleted && levelDef && (
-                <span className={`mt-1.5 inline-block text-[10px] font-bold px-2 py-0.5 rounded-lg border ${levelDef.badge}`}>
-                  {levelDef.label}
-                </span>
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#1E3A8A]/5 text-[#1E3A8A] text-[10px] font-bold border border-[#1E3A8A]/10">
+                    <Award className="w-3 h-3 text-[#B59A57]" /> {levelDef.label}
+                  </span>
+                </div>
               )}
               {!testCompleted && (
-                <Link to="/placement-test" className="mt-1.5 inline-block text-[10px] font-bold text-[#D4AF37] hover:underline">
-                  → Take placement test
+                <Link to="/placement-test" className="mt-2 inline-flex items-center text-[11px] font-bold text-[#B59A57] hover:underline">
+                  Evaluate Proficiency →
                 </Link>
               )}
-            </div>
-          )}
-
-          {/* Start Path CTA (students without a path) */}
-          {isStudent && !selectedPath && (
-            <div className="mx-4 mb-2">
-              <Link
-                to="/choose-path"
-                className="block p-3 rounded-2xl bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-center"
-              >
-                <p className="text-xs font-bold text-[#D4AF37]">✨ Choose Your Learning Path</p>
-              </Link>
             </div>
           )}
 
           {/* Navigation Links */}
-          <nav className="flex-1 px-4 space-y-2 overflow-y-auto overflow-x-hidden">
-            {menuItems.map((navItem) => {
+          <nav className="flex-1 px-4 space-y-1 overflow-y-auto custom-scrollbar">
+            {filteredItems.map((navItem) => {
               const isActive = location.pathname === navItem.href;
               return (
                 <Link
@@ -102,40 +103,35 @@ const Sidebar = ({ isOpen, toggle }) => {
                   to={navItem.href}
                   onClick={window.innerWidth < 1024 ? toggle : null}
                   className={`
-                    relative flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-300 font-medium group
+                    relative flex items-center gap-4 px-4 py-3.5 rounded-lg transition-all duration-200 group
                     ${isActive
-                      ? 'text-[#D4AF37]'
-                      : 'text-[#AAB4C5] hover:bg-[#0B1F3A]/60 hover:text-white'}
+                      ? 'bg-[#1E3A8A] text-white shadow-md shadow-[#1E3A8A]/10'
+                      : 'text-slate-500 hover:bg-slate-50 hover:text-[#1E3A8A]'}
                   `}
                 >
-                  {/* Active Indicator Background */}
-                  {isActive && (
-                    <div className="absolute inset-0 bg-[#D4AF37]/10 rounded-2xl border border-[#D4AF37]/20"></div>
-                  )}
+                  <navItem.icon className={`w-5 h-5 transition-transform duration-200 ${isActive ? 'text-[#B59A57]' : 'group-hover:scale-110'}`} />
+                  <span className="text-sm font-semibold">{navItem.label}</span>
                   
-                  {/* Active Left Pill */}
                   {isActive && (
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#D4AF37] rounded-r-lg shadow-[0_0_10px_#D4AF37]"></div>
+                    <motion.div 
+                      layoutId="sidebar-active"
+                      className="absolute right-2 w-1.5 h-1.5 rounded-full bg-[#B59A57]"
+                    />
                   )}
-
-                  <navItem.icon className={`w-5 h-5 z-10 transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} />
-                  <span className="z-10">{navItem.label}</span>
                 </Link>
               );
             })}
           </nav>
 
-          {/* User Footer */}
-          <div className="p-6 mt-auto">
-            <div className="p-4 rounded-2xl bg-[#0B1F3A]/50 border border-[rgba(212,175,55,0.15)] backdrop-blur-sm">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#F1D37A] flex items-center justify-center shadow-lg shadow-[#D4AF37]/20">
-                  <span className="text-[#0B1F3A] font-bold text-sm">PRO</span>
-                </div>
-                <div className="overflow-hidden">
-                  <p className="text-sm font-bold text-white truncate">Premium Plan</p>
-                  <p className="text-xs text-[#AAB4C5] truncate">Active</p>
-                </div>
+          {/* Institutional Footer */}
+          <div className="p-6 mt-auto border-t border-slate-100">
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 border border-slate-200">
+              <div className="w-10 h-10 rounded-lg bg-[#B59A57] flex items-center justify-center text-white font-bold text-xs shadow-sm">
+                SCH
+              </div>
+              <div className="overflow-hidden">
+                <p className="text-xs font-bold text-[#1E3A8A] truncate">Scholar Member</p>
+                <p className="text-[10px] text-slate-400 font-medium truncate uppercase tracking-wider">Verification: Active</p>
               </div>
             </div>
           </div>
